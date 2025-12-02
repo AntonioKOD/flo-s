@@ -1,0 +1,21 @@
+# robots.txt for Flo's Pizza
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://flospizza.com/sitemap.xml
+
+# Disallow admin or private areas if any
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
+
