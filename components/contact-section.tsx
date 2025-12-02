@@ -12,7 +12,7 @@ export default function ContactSection() {
   ]
 
   return (
-    <section className="w-full py-16 md:py-24 bg-[#1a1a1a] text-white">
+    <section className="w-full py-16 md:py-24 bg-[#1a1a1a] text-white" id="contact">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div
           className="text-center mb-12"
@@ -113,7 +113,7 @@ export default function ContactSection() {
                 <span className="text-gray-300">hello@flospizza.com</span>
               </div>*/}
             </div>
-            <Button className="w-full mt-6 bg-[#C1272D] hover:bg-[#a01f25] text-white">Order Now</Button>
+            <Link href="https://flospizza.kwickmenu.com"><Button className="w-full mt-6 bg-[#C1272D] hover:bg-[#a01f25] text-white">Order Now</Button></Link>
           </motion.div>
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function NavBar() {
   const navItems = [
     { name: "Home", link: "#" },
     { name: "About", link: "#about" },
-    { name: "Contact", link: "#" },
+    { name: "Contact", link: "#contact" },
   ];
 
   return (
