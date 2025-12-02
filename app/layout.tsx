@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     description: "Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection serving Brockton, Boston & Greater Boston area. Order online for pickup or delivery!",
     images: [
       {
-        url: "/flospizza.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Flo's Pizza - Fresh Pizza in Brockton, MA",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Flo's Pizza | Fresh Pizza in Brockton & Boston, MA",
     description: "Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection serving Brockton, Boston & Greater Boston area.",
-    images: ["/flospizza.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
