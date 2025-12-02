@@ -7,8 +7,7 @@ import Link from "next/link";
 
 export default function ContactSection() {
   const hours = [
-    { days: "Sunday - Thursday", time: "11:00 AM - 9:00 PM" },
-    { days: "Friday - Saturday", time: "10:00 AM - 10:00 PM" },
+    { days: "Monday - Sunday", time: "6:00 AM - 9:00 PM" },
   ]
 
   return (
