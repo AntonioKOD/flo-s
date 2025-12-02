@@ -117,6 +117,10 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </div>
+
+      <div className="text-center mt-12">
+        <p>Copyright © {new Date().getFullYear()} Flo&apos;s Pizza. All rights reserved. | Made with ❤️ by <Link href="https://buildquick.io" className="text-[#C1272D]">BuildQuick</Link></p>
+      </div>
     </section>
   )
 }
