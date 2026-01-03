@@ -89,7 +89,7 @@ export default function NavBar() {
           <Link href="https://flospizza.kwickmenu.com" className="mt-4 w-full">
             <NavbarButton
               variant="primary"
-              href="#order"
+              href="https://flospizza.kwickmenu.com"
               className="w-full"
               as="button"
             >
