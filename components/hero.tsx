@@ -4,6 +4,7 @@ import { TextRotate } from "./ui/text-rotate"
 import { motion } from "motion/react"
 import Image from "next/image"
 import { Button } from "./ui/button"
+import Link from "next/link"
 
 export default function Hero() {
   return (
@@ -80,16 +81,20 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Button size="sm" className="flex-1 bg-[#C1272D] hover:bg-[#a02025] text-white text-sm font-medium">
-            Order Now
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex-1 border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 text-sm font-medium bg-transparent"
-          >
-            View Menu
-          </Button>
+          <Link href="https://flospizza.kwickmenu.com" className="flex-1">
+            <Button size="sm" className="w-full bg-[#C1272D] hover:bg-[#a02025] text-white text-sm font-medium">
+              Order Now
+            </Button>
+          </Link>
+          <Link href="https://flospizza.kwickmenu.com" className="flex-1">
+            <Button
+              size="sm"
+              variant="outline"
+              className="w-full border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 text-sm font-medium bg-transparent"
+            >
+              View Menu
+            </Button>
+          </Link>
         </motion.div>
       </div>
 

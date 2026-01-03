@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 import floslogo from "@/public/flospizza.png";
 import Image from "next/image";
+import Link from "next/link";
 
 import React, { useRef, useState } from "react";
 
@@ -125,23 +126,49 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         className
       )}
     >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
-          className="relative px-4 py-2 text-muted-foreground"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-muted/60"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
+      {items.map((item, idx) => {
+        const isExternalLink = item.link.startsWith("http");
+        const isHashLink = item.link.startsWith("#");
+        const isPageRoute = !isExternalLink && !isHashLink;
+        
+        const linkContent = (
+          <>
+            {hovered === idx && (
+              <motion.div
+                layoutId="hovered"
+                className="absolute inset-0 h-full w-full rounded-full bg-muted/60"
+              />
+            )}
+            <span className="relative z-20">{item.name}</span>
+          </>
+        );
+
+        if (isPageRoute) {
+          return (
+            <Link
+              onMouseEnter={() => setHovered(idx)}
+              onClick={onItemClick}
+              className="relative px-4 py-2 text-muted-foreground"
+              key={`link-${idx}`}
+              href={item.link}
+            >
+              {linkContent}
+            </Link>
+          );
+        }
+
+        return (
+          <a
+            onMouseEnter={() => setHovered(idx)}
+            onClick={onItemClick}
+            className="relative px-4 py-2 text-muted-foreground"
+            key={`link-${idx}`}
+            href={item.link}
+          >
+            {linkContent}
+          </a>
+        );
+      })}
     </motion.div>
   );
 };

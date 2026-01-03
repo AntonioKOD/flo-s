@@ -19,6 +19,7 @@ export default function NavBar() {
   const navItems = [
     { name: "Home", link: "#" },
     { name: "About", link: "#about" },
+    { name: "Catering", link: "/catering" },
     { name: "Contact", link: "#contact" },
   ];
 
@@ -56,24 +57,45 @@ export default function NavBar() {
         </MobileNavHeader>
 
         <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.link}
-              onClick={() => setIsOpen(false)}
-              className="w-full py-2 text-base font-medium text-foreground"
+          {navItems.map((item) => {
+            const isExternalLink = item.link.startsWith("http");
+            const isHashLink = item.link.startsWith("#");
+            const isPageRoute = !isExternalLink && !isHashLink;
+            
+            if (isPageRoute) {
+              return (
+                <Link
+                  key={item.name}
+                  href={item.link}
+                  onClick={() => setIsOpen(false)}
+                  className="w-full py-2 text-base font-medium text-foreground"
+                >
+                  {item.name}
+                </Link>
+              );
+            }
+            
+            return (
+              <a
+                key={item.name}
+                href={item.link}
+                onClick={() => setIsOpen(false)}
+                className="w-full py-2 text-base font-medium text-foreground"
+              >
+                {item.name}
+              </a>
+            );
+          })}
+          <Link href="https://flospizza.kwickmenu.com" className="mt-4 w-full">
+            <NavbarButton
+              variant="primary"
+              href="#order"
+              className="w-full"
+              as="button"
             >
-              {item.name}
-            </a>
-          ))}
-          <NavbarButton
-            variant="primary"
-            href="#order"
-            className="mt-4 w-full"
-            as="button"
-          >
-            Order Online
-          </NavbarButton>
+              Order Online
+            </NavbarButton>
+          </Link>
         </MobileNavMenu>
       </MobileNav>
     </Navbar>
