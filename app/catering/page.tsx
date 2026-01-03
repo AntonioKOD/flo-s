@@ -86,7 +86,7 @@ const cateringSections: MenuSection[] = [
       },
       {
         name: "Special Pizzas",
-        description: "Veggie, Margherita, Chicken Bacon Ranch, Hawaiian, Chicken Broccoli, BBQ Chicken, Buffalo Chicken, Greek, MeatLovers,",
+        description: "Veggie, Margherita, Chicken Bacon Ranch, Hawaiian, Chicken Broccoli, BBQ Chicken, Buffalo Chicken, Greek, MeatLovers",
         prices: [{ amount: 23.99 }],
       },
     ],
