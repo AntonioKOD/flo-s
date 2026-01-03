@@ -36,7 +36,7 @@ export default function NavBar() {
         {/* right: CTA button */}
         <div className="relative z-20 flex items-center gap-2">
         <Link href="https://flospizza.kwickmenu.com">
-          <NavbarButton variant="primary" href="#order">
+          <NavbarButton variant="primary" href="https://flospizza.kwickmenu.com">
             Order Online
           </NavbarButton>
           </Link>

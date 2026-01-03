@@ -81,13 +81,12 @@ const cateringSections: MenuSection[] = [
         prices: [{ amount: 22.49 }],
       },
       {
-        name: "Special Pizzas",
-        description: "Buffalo Chicken, Greek, MeatLovers, Flo's Special",
+        name: "Flo's Special Pizza",
         prices: [{ amount: 24.99 }],
       },
       {
         name: "Special Pizzas",
-        description: "Veggie, Margherita, Chicken Bacon Ranch, Hawaiian, Chicken Broccoli, BBQ Chicken",
+        description: "Veggie, Margherita, Chicken Bacon Ranch, Hawaiian, Chicken Broccoli, BBQ Chicken, Buffalo Chicken, Greek, MeatLovers,",
         prices: [{ amount: 23.99 }],
       },
     ],
