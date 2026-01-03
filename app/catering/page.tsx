@@ -25,20 +25,22 @@ type MenuSection = {
 const cateringSections: MenuSection[] = [
   {
     title: "Appetizers",
-    subtitle: "Priced per 25 pieces",
+    subtitle: "",
     items: [
       {
-        name: "Chicken Wings / Chicken Tenders",
-        description:
-          "Choice of Buffalo, Cranberry Buffalo, Gold Fever, BBQ",
-        prices: [{ amount: 90 }],
+        name: "Chicken Tenders",
+        prices: [ { label: "SM", amount: 60}, { label: "LG", amount: 110}],
+      },
+      {
+        name: "Chicken Wings",
+        prices: [ { label: "SM", amount: 60}, { label: "LG", amount: 110}],
       },
       {
         name: "Kebab Chicken Skewers",
         prices: [{ amount: 100 }],
       },
       {
-        name: "Steak and Cheese Egg Rolls",
+        name: "Steak and Cheese Sub Rolls",
         prices: [{ amount: 115 }],
       },
       {
@@ -67,9 +69,26 @@ const cateringSections: MenuSection[] = [
         prices: [{ amount: 115 }],
       },
       {
-        name: "Flatbread and Pizza",
-        prices: [],
-        note: "See main menu for prices",
+        name: "Cheese Pizza",
+        prices: [{ amount: 16.49 }],
+      },
+      {
+        name: "Pizza with One Topping",
+        prices: [{ amount: 19.49 }],
+      },
+      {
+        name: "Pizza with Two Toppings",
+        prices: [{ amount: 22.49 }],
+      },
+      {
+        name: "Special Pizzas",
+        description: "Buffalo Chicken, Greek, MeatLovers, Flo's Special",
+        prices: [{ amount: 24.99 }],
+      },
+      {
+        name: "Special Pizzas",
+        description: "Veggie, Margherita, Chicken Bacon Ranch, Hawaiian, Chicken Broccoli, BBQ Chicken",
+        prices: [{ amount: 23.99 }],
       },
     ],
   },
@@ -79,13 +98,7 @@ const cateringSections: MenuSection[] = [
     items: [
       { name: "Fruit Platter", prices: [{ amount: 115 }] },
       { name: "Hummus Platter", prices: [{ amount: 110 }] },
-      { name: "Clam Chowder Soup", prices: [{ amount: 80 }] },
-      { name: "Grilled Vegetables", prices: [{ amount: 120 }] },
       { name: "Cheese and Fruit", prices: [{ amount: 140 }] },
-      {
-        name: "Charcuterie and Grilled Vegetables",
-        prices: [{ amount: 155 }],
-      },
       {
         name: "Charcuterie and Artisan Cheeses",
         prices: [{ amount: 180 }],
@@ -95,28 +108,28 @@ const cateringSections: MenuSection[] = [
         prices: [{ amount: 85 }],
       },
       {
-        name: "Choice of Salad – Greek, House, Pear Goat Cheese",
+        name: "Choice of Salad – Greek, House",
         prices: [{ amount: 90 }],
       },
-      { name: "Chicken Broccoli Ziti", prices: [{ amount: 140 }] },
-      { name: "Baked Cod", prices: [{ amount: 240 }] },
-      { name: "Roasted Salmon", prices: [{ amount: 200 }] },
+      { name: "Chicken Broccoli Ziti", prices: [{ amount: 140 }], description: "Homemade Alfredo Sauce" },
+      { name: "Fried Haddock", prices: [{ amount: 240 }]},
+      { name: "Fried Shrimp", prices: [{amount: 120}], description: "40/50 pieces per platter"},
       { name: "Garlic Mashed Potatoes", prices: [{ amount: 120 }] },
-      {
-        name: "Roasted Dauphinoise Potatoes",
-        prices: [{ amount: 130 }],
-      },
       {
         name: "Chicken Parmigiana Ziti",
         prices: [{ amount: 140 }],
       },
       {
+        name: "Spaghetti and Meatballs",
+        prices: [{ amount: 140 }],
+      },
+      {
         name: "Steak Tips",
-        prices: [{ label: "Lg", amount: 320 }],
+        prices: [{amount: 320 }],
       },
       {
         name: "Grilled Chicken",
-        prices: [{ label: "Lg", amount: 200 }],
+        prices: [{ amount: 200 }],
       },
     ],
   },
@@ -134,6 +147,15 @@ const cateringSections: MenuSection[] = [
       {
         name: "Scramble Eggs",
         prices: [{ amount: 150 }],
+      },
+      {
+        name: "Veggie Omelette",
+        prices: [{label: "Dozen", amount: 95 }],
+      },
+      {
+        name: "Omelette",
+        description: "Choice of Bacon, Ham, Sausage",
+        prices: [{label: "Dozen", amount: 105 }],
       },
       {
         name: "Bacon",
@@ -162,7 +184,7 @@ const cateringSections: MenuSection[] = [
       {
         name: "Toast",
         description:
-          "White bread, English muffins, biscuits, berries jam",
+          "White, Wheat, English Muffin, Biscuit, Bagel, Croissant",
         prices: [{ amount: 50 }],
       },
     ],
@@ -173,7 +195,8 @@ const formatPrice = (price: number) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(price)
 
 export default function CateringPage() {
