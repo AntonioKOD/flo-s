@@ -29,11 +29,11 @@ const cateringSections: MenuSection[] = [
     items: [
       {
         name: "Chicken Tenders",
-        prices: [ { label: "SM", amount: 60}, { label: "LG", amount: 110}],
+        prices: [ { label: "Sm", amount: 60}, { label: "Lg", amount: 110}],
       },
       {
         name: "Chicken Wings",
-        prices: [ { label: "SM", amount: 60}, { label: "LG", amount: 110}],
+        prices: [ { label: "Sm", amount: 60}, { label: "Lg", amount: 110}],
       },
       {
         name: "Kebab Chicken Skewers",
