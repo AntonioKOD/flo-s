@@ -178,6 +178,11 @@ const cateringSections: MenuSection[] = [
           "White, Wheat, English Muffin, Biscuit, Bagel, Croissant",
         prices: [{ amount: 50 }],
       },
+      {
+        name: "Sausage, Egg & Cheese or Bacon, Egg & Cheese",
+        prices: [{label: "Dozen", amount: 88 }],
+        description: "With a choice of Croissant, English Muffin or Bagel "
+      }
     ],
   },
 ]
