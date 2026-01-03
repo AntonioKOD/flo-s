@@ -57,14 +57,6 @@ const cateringSections: MenuSection[] = [
         prices: [{ amount: 150 }],
       },
       {
-        name: "Lobster Rangoon",
-        prices: [{ amount: 90 }],
-      },
-      {
-        name: "Shrimp Cocktail",
-        prices: [{ amount: 95 }],
-      },
-      {
         name: "Tuna Salad Sliders or Wraps",
         prices: [{ amount: 115 }],
       },
