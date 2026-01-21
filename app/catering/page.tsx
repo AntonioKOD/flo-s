@@ -132,10 +132,6 @@ const cateringSections: MenuSection[] = [
         prices: [{ amount: 100 }],
       },
       {
-        name: "Fruit Platter",
-        prices: [{ amount: 80 }],
-      },
-      {
         name: "Scramble Eggs",
         prices: [{ amount: 150 }],
       },
