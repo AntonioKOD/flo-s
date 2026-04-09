@@ -18,6 +18,7 @@ export default function NavBar() {
 
   const navItems = [
     { name: "Home", link: "/" },
+    { name: "Menu", link: "/menu" },
     { name: "About", link: "#about" },
     { name: "Catering", link: "/catering" },
     { name: "Contact", link: "#contact" },
@@ -35,11 +36,9 @@ export default function NavBar() {
 
         {/* right: CTA button */}
         <div className="relative z-20 flex items-center gap-2">
-        <Link href="https://flospizza.kwickmenu.com">
           <NavbarButton variant="primary" href="https://flospizza.kwickmenu.com">
             Order Online
           </NavbarButton>
-          </Link>
         </div>
       </NavBody>
 
@@ -86,16 +85,13 @@ export default function NavBar() {
               </a>
             );
           })}
-          <Link href="https://flospizza.kwickmenu.com" className="mt-4 w-full">
-            <NavbarButton
-              variant="primary"
-              href="https://flospizza.kwickmenu.com"
-              className="w-full"
-              as="button"
-            >
-              Order Online
-            </NavbarButton>
-          </Link>
+          <NavbarButton
+            variant="primary"
+            href="https://flospizza.kwickmenu.com"
+            className="mt-4 w-full"
+          >
+            Order Online
+          </NavbarButton>
         </MobileNavMenu>
       </MobileNav>
     </Navbar>

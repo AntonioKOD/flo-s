@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-righteous);
+  --font-body: var(--font-poppins);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -139,6 +141,24 @@
   --sidebar-ring: #F4B400;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loader-progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -148,5 +168,42 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .font-display {
+    font-family: var(--font-righteous), var(--font-geist-sans), sans-serif;
+  }
+  .font-body {
+    font-family: var(--font-poppins), var(--font-geist-sans), sans-serif;
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+  .animate-marquee-slow {
+    animation: marquee 35s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow {
+    animation: none;
   }
 }

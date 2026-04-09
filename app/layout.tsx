@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Righteous, Poppins } from "next/font/google";
 
 import "./globals.css";
-import NavBar from "@/components/navbar";
+import ConditionalNavBar from "@/components/conditional-navbar";
+import Loader from "@/components/loader";
 import {GoogleAnalytics} from "@next/third-parties/google";
 
 const geistSans = Geist({
@@ -13,6 +14,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const righteous = Righteous({
+  variable: "--font-righteous",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -58,8 +71,12 @@ export const metadata: Metadata = {
   publisher: "Flo's Pizza",
   metadataBase: new URL("https://flospizza.com"),
   alternates: {
-    canonical: "/",
+    canonical: "https://flospizza.com",
+    languages: {
+      "en-US": "https://flospizza.com",
+    },
   },
+  applicationName: "Flo's Pizza",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -67,20 +84,11 @@ export const metadata: Metadata = {
     siteName: "Flo's Pizza",
     title: "Flo's Pizza | Fresh Pizza in Brockton & Boston, MA",
     description: "Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection serving Brockton, Boston & Greater Boston area. Order online for pickup or delivery!",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Flo's Pizza - Fresh Pizza in Brockton, MA",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Flo's Pizza | Fresh Pizza in Brockton & Boston, MA",
     description: "Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection serving Brockton, Boston & Greater Boston area.",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -114,11 +122,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#C1272D" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${righteous.variable} ${poppins.variable} antialiased`}
       >
         <GoogleAnalytics gaId="G-GZ9Z758XKL" />
-        <NavBar/>
+        <Loader />
+        <ConditionalNavBar />
         {children}
       </body>
     </html>

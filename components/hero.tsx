@@ -18,7 +18,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="flex flex-col items-center gap-2 text-2xl font-bold text-foreground">
+          <h1 className="flex flex-col items-center gap-2 text-2xl font-bold text-foreground font-display">
             <span>Freshly</span>
             <span className="inline-block overflow-hidden rounded-lg bg-[#C1272D] px-3 py-1.5 shadow-lg">
               <TextRotate
@@ -82,15 +82,15 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Link href="https://flospizza.kwickmenu.com" className="flex-1">
-            <Button size="sm" className="w-full bg-[#C1272D] hover:bg-[#a02025] text-white text-sm font-medium">
+            <Button size="sm" className="w-full bg-[#C1272D] hover:bg-[#a02025] text-white text-sm font-body font-semibold rounded-full">
               Order Now
             </Button>
           </Link>
-          <Link href="https://flospizza.kwickmenu.com" className="flex-1">
+          <Link href="/menu" className="flex-1">
             <Button
               size="sm"
               variant="outline"
-              className="w-full border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 text-sm font-medium bg-transparent"
+              className="w-full border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 text-sm font-body font-semibold bg-transparent rounded-full"
             >
               View Menu
             </Button>
@@ -103,7 +103,7 @@ export default function Hero() {
         {/* Text Content - Left Side */}
         <div className="relative z-10 w-1/2 pl-8 lg:pl-12">
           <motion.h1
-            className="flex items-center gap-4 lg:gap-5 text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight"
+            className="flex items-center gap-4 lg:gap-5 text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight font-display"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}

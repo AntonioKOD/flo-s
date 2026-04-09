@@ -20,8 +20,8 @@ export default function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">More Than Just Pizza</h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display text-foreground mb-4">More Than Just Pizza</h2>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-body">
             From sunrise to sunset, we serve fresh, delicious food made with love
           </p>
         </motion.div>
@@ -82,10 +82,10 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
+            <h3 className="text-2xl md:text-3xl font-display text-foreground">
               Start Your Day Right With Our Breakfast Menu
             </h3>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed font-body">
               At Flo&apos;s, we believe great food isn&apos;t limited to just one meal. Our breakfast menu features freshly baked
               pastries, artisan coffee, fluffy pancakes, and hearty egg dishes — all made with the same passion and
               quality ingredients as our famous pizzas.
