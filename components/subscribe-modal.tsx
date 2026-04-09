@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { X } from "lucide-react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 const COOKIE_NAME = "flos_subscribed"
 
@@ -12,6 +12,7 @@ function hasSubscribedCookie() {
 }
 
 export default function SubscribeModal() {
+  const BUSINESS = useBusiness()
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -112,7 +113,7 @@ export default function SubscribeModal() {
                         <p className="font-body text-muted-foreground text-sm mt-1">
                           Your unique 10% OFF code is on its way. Use it at checkout on our{" "}
                           <a
-                            href={BUSINESS.urls.orderOnline}
+                            href={BUSINESS.urls?.orderOnline ?? "#"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-[#C1272D] underline underline-offset-2"

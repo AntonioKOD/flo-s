@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 const steps = [
   {
@@ -55,6 +55,7 @@ function StepCard({ step, index }: { step: (typeof steps)[number]; index: number
 }
 
 export default function HowToOrder() {
+  const BUSINESS = useBusiness()
   return (
     <section className="bg-[#fafafa] py-20 px-4">
       <div className="container mx-auto max-w-[1240px]">
@@ -87,7 +88,7 @@ export default function HowToOrder() {
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <a
-            href={BUSINESS.urls.orderOnline}
+            href={BUSINESS.urls?.orderOnline ?? "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#C1272D] text-white font-body font-semibold px-8 py-4 rounded-full hover:bg-[#a01f25] transition-colors"

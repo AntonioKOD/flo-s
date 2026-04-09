@@ -3,10 +3,17 @@
 import React from "react"
 import { motion } from "motion/react"
 import Link from "next/link"
-import { CATERING_SECTIONS, formatPrice } from "@/lib/menu-data"
-import { BUSINESS } from "@/lib/constants"
+import { formatPrice } from "@/lib/menu-data"
+import { useBusiness, useMenu } from "aicms"
 
 export default function CateringPage() {
+  const BUSINESS = useBusiness()
+  const { items, categories } = useMenu()
+  const CATERING_SECTIONS = categories.map((cat) => ({
+    title: cat,
+    subtitle: "",
+    items: items.filter((i) => i.category === cat),
+  }))
   return (
     <main className="w-full min-h-screen bg-background">
       {/* Hero Section */}
@@ -76,7 +83,7 @@ export default function CateringPage() {
                           {item.prices.length === 0
                             ? item.note ?? ""
                             : item.prices
-                                .map((p) =>
+                                .map((p: { label?: string; amount: number }) =>
                                   p.label
                                     ? `${p.label} ${formatPrice(p.amount)}`
                                     : formatPrice(p.amount)

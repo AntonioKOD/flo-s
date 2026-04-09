@@ -2,7 +2,6 @@ import Hero from "@/components/hero"
 import AboutSection from "@/components/about-section"
 import MarqueeText from "@/components/marquee-text"
 import MenuSection from "@/components/menu-section"
-import WeeklySpecial from "@/components/weekly-special"
 import HowToOrder from "@/components/how-to-order"
 import GallerySection from "@/components/gallery-section"
 import Testimonials from "@/components/testimonials"
@@ -12,31 +11,27 @@ import Footer from "@/components/footer"
 import Divider from "@/components/divider"
 import { JsonLd } from "@/components/json-ld"
 import {
-  getRestaurantSchema,
-  getLocalBusinessSchema,
-  getOrganizationSchema,
-  getWebSiteSchema,
-  getBreadcrumbSchema,
-} from "@/lib/schema"
-import type { Metadata } from "next"
+  generateRestaurantSchema,
+  generateLocalBusinessSchema,
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateBreadcrumbSchema,
+  getBusiness,
+} from "aicms/server"
 
-export const metadata: Metadata = {
-  title: "Flo's Pizza | Fresh Pizza in Brockton & Boston, MA | Order Online",
-  description:
-    "Flo's Pizza in Brockton, MA - Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection delivered to Boston, Brockton, Stoughton, Abington, Easton, Randolph & surrounding Greater Boston areas. Order online for pickup or delivery!",
-}
+export default async function Home() {
+  const biz = await getBusiness()
 
-export default function Home() {
   return (
     <>
       <JsonLd
         data={[
-          getRestaurantSchema(),
-          getLocalBusinessSchema(),
-          getOrganizationSchema(),
-          getWebSiteSchema(),
-          getBreadcrumbSchema([
-            { name: "Home", url: "https://flospizza.com" },
+          await generateRestaurantSchema(),
+          await generateLocalBusinessSchema(),
+          await generateOrganizationSchema(),
+          await generateWebSiteSchema(),
+          await generateBreadcrumbSchema([
+            { name: "Home", url: biz.urls?.website ?? "" },
           ]),
         ]}
       />
@@ -57,7 +52,6 @@ export default function Home() {
         <AboutSection />
         <Divider />
         <MenuSection />
-        <WeeklySpecial />
         <Divider />
         <HowToOrder />
         <Divider />

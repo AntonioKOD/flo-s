@@ -3,8 +3,8 @@
 import { ShoppingCart, Star } from "lucide-react"
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { FEATURED_ITEMS, formatPrice } from "@/lib/menu-data"
-import { BUSINESS } from "@/lib/constants"
+import { formatPrice } from "@/lib/menu-data"
+import { useBusiness, useMenu, type MenuItem } from "aicms"
 
 function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
   return (
@@ -22,7 +22,8 @@ function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
   )
 }
 
-function MenuCard({ item, index }: { item: (typeof FEATURED_ITEMS)[number]; index: number }) {
+function MenuCard({ item, index }: { item: MenuItem; index: number }) {
+  const BUSINESS = useBusiness()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
@@ -52,10 +53,10 @@ function MenuCard({ item, index }: { item: (typeof FEATURED_ITEMS)[number]; inde
           <span className="font-display text-[#C1272D] text-2xl">
             {item.prices.length === 1
               ? formatPrice(item.prices[0].amount)
-              : item.prices.map((p) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount))).join(" · ")}
+              : item.prices.map((p: { label?: string; amount: number }) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount))).join(" · ")}
           </span>
           <a
-            href={BUSINESS.urls.orderOnline}
+            href={BUSINESS.urls?.orderOnline ?? "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 hover:text-[#C1272D] transition-colors"
@@ -75,6 +76,9 @@ function MenuCard({ item, index }: { item: (typeof FEATURED_ITEMS)[number]; inde
 }
 
 export default function MenuSection() {
+  const BUSINESS = useBusiness()
+  const { items } = useMenu()
+  const FEATURED_ITEMS = items.filter((i) => i.popular)
   return (
     <section className="bg-[#fafafa] py-20 px-4">
       <div className="container mx-auto max-w-[1240px]">
@@ -105,7 +109,7 @@ export default function MenuSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <a
-            href={BUSINESS.urls.orderOnline}
+            href={BUSINESS.urls?.orderOnline ?? "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#C1272D] text-white font-body font-semibold px-8 py-4 rounded-full hover:bg-[#a01f25] transition-colors"

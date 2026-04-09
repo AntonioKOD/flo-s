@@ -2,27 +2,31 @@ import MenuGrid from "@/components/menu-grid"
 import MarqueeText from "@/components/marquee-text"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
-import { getMenuSchema, getBreadcrumbSchema } from "@/lib/schema"
-import { BUSINESS } from "@/lib/constants"
+import { generatePageMetadata, getBusiness, generateRestaurantSchema, generateBreadcrumbSchema } from "aicms/server"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Menu",
-  description: `Browse the full ${BUSINESS.name} menu. Pizza, catering platters, brunch items, and more. Order online for pickup or delivery in Brockton, MA.`,
-  alternates: {
-    canonical: "https://flospizza.com/menu",
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const biz = await getBusiness()
+  return generatePageMetadata("menu", {
+    title: "Menu",
+    description: `Browse the full ${biz.name} menu. Pizza, catering platters, brunch items, and more. Order online for pickup or delivery in ${biz.address.city}, ${biz.address.state}.`,
+    alternates: {
+      canonical: `${biz.urls?.website ?? ""}/menu`,
+    },
+  })
 }
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const biz = await getBusiness()
+
   return (
     <>
       <JsonLd
         data={[
-          getMenuSchema(),
-          getBreadcrumbSchema([
-            { name: "Home", url: "https://flospizza.com" },
-            { name: "Menu", url: "https://flospizza.com/menu" },
+          await generateRestaurantSchema(),
+          await generateBreadcrumbSchema([
+            { name: "Home", url: biz.urls?.website ?? "" },
+            { name: "Menu", url: `${biz.urls?.website ?? ""}/menu` },
           ]),
         ]}
       />
@@ -62,7 +66,7 @@ export default function MenuPage() {
               Place your order online for pickup or delivery. Fresh and hot, ready when you are.
             </p>
             <a
-              href={BUSINESS.urls.orderOnline}
+              href={biz.urls?.orderOnline ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#C1272D] text-white font-body font-semibold px-10 py-4 rounded-full hover:bg-[#a01f25] transition-colors"

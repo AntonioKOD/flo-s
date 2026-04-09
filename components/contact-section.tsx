@@ -4,9 +4,10 @@ import { motion } from "motion/react"
 import { Phone, MapPin, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 export default function ContactSection() {
+  const BUSINESS = useBusiness()
   return (
     <section className="w-full py-16 md:py-24 bg-[#1a1a1a] text-white" id="contact">
       <div className="container mx-auto px-4 md:px-8">
@@ -67,7 +68,7 @@ export default function ContactSection() {
               <br />
               {BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}
             </p>
-            <a href={BUSINESS.urls.googleMaps} target="_blank" rel="noopener noreferrer">
+            <a href={BUSINESS.urls?.googleMaps ?? "#"} target="_blank" rel="noopener noreferrer">
               <Button
                 variant="outline"
                 className="w-full border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D] hover:text-white bg-transparent font-body"
@@ -99,7 +100,7 @@ export default function ContactSection() {
                 </a>
               </div>
             </div>
-            <Link href={BUSINESS.urls.orderOnline}>
+            <Link href={BUSINESS.urls?.orderOnline ?? "#"}>
               <Button className="w-full mt-6 bg-[#C1272D] hover:bg-[#a01f25] text-white font-body">
                 Order Now
               </Button>

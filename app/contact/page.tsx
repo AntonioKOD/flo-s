@@ -4,10 +4,11 @@ import { motion } from "motion/react"
 import { Phone, MapPin, Clock, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 import Footer from "@/components/footer"
 
 export default function ContactPage() {
+  const BUSINESS = useBusiness()
   return (
     <main className="w-full min-h-screen bg-background">
       {/* Hero */}
@@ -72,7 +73,7 @@ export default function ContactPage() {
                 <br />
                 {BUSINESS.address.city}, {BUSINESS.address.state} {BUSINESS.address.zip}
               </p>
-              <a href={BUSINESS.urls.googleMaps} target="_blank" rel="noopener noreferrer">
+              <a href={BUSINESS.urls?.googleMaps ?? "#"} target="_blank" rel="noopener noreferrer">
                 <Button
                   variant="outline"
                   className="w-full border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D] hover:text-white bg-transparent font-body"
@@ -103,7 +104,7 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-              <Link href={BUSINESS.urls.orderOnline}>
+              <Link href={BUSINESS.urls?.orderOnline ?? "#"}>
                 <Button className="w-full mt-6 bg-[#C1272D] hover:bg-[#a01f25] text-white font-body">
                   Order Now
                 </Button>
@@ -153,7 +154,7 @@ export default function ContactPage() {
 
           <div className="flex justify-center mt-6">
             <a
-              href={BUSINESS.urls.googleMaps}
+              href={BUSINESS.urls?.googleMaps ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-[#C1272D] hover:underline font-body font-medium"
@@ -181,7 +182,7 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href={BUSINESS.urls.orderOnline}
+                href={BUSINESS.urls?.orderOnline ?? "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3 bg-[#C1272D] hover:bg-[#a01f25] text-white font-body font-medium rounded-full transition-colors duration-200"

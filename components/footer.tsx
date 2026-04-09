@@ -2,9 +2,10 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 export default function Footer() {
+  const BUSINESS = useBusiness()
   return (
     <footer className="py-10 border-t-2 border-gray-200 shadow-lg bg-background">
       <div className="container mx-auto px-4">
@@ -31,7 +32,7 @@ export default function Footer() {
                 Contact
               </Link>
               <a
-                href={BUSINESS.urls.orderOnline}
+                href={BUSINESS.urls?.orderOnline ?? "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#C1272D] transition-colors"
@@ -69,7 +70,7 @@ export default function Footer() {
                 </a>
               </p>
               <a
-                href={BUSINESS.urls.googleMaps}
+                href={BUSINESS.urls?.googleMaps ?? "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-2 text-[#C1272D] hover:underline font-semibold"

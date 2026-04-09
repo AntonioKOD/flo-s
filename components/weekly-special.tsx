@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 const TARGET_DATE = new Date()
 TARGET_DATE.setDate(TARGET_DATE.getDate() + 3)
@@ -40,6 +40,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 }
 
 export default function WeeklySpecial() {
+  const BUSINESS = useBusiness()
   const timeLeft = useCountdown(TARGET_DATE)
 
   return (
@@ -103,7 +104,7 @@ export default function WeeklySpecial() {
             </div>
 
             <a
-              href={BUSINESS.urls.orderOnline}
+              href={BUSINESS.urls?.orderOnline ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-[#C1272D] text-white font-body font-semibold px-8 py-4 rounded-full hover:bg-[#a01f25] transition-colors w-full text-center"

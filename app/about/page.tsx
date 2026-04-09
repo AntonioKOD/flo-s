@@ -4,7 +4,7 @@ import { motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { Coffee, Pizza, Clock, UtensilsCrossed, Heart, Star, Users } from "lucide-react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 import Footer from "@/components/footer"
 import breakfast1 from "@/public/delicious-breakfast-with-coffee-orange-juice-waffles-croissants-jam-nut-paste-light-top-view.jpg"
 import breakfast2 from "@/public/edward-nguyen-Ma_tUpJHb2M-unsplash.jpg"
@@ -12,6 +12,7 @@ import breakfast3 from "@/public/homemade-fried-eggs-salad-bacon-plate-front-cof
 import breakfast4 from "@/public/pablo-pacheco-D3Mag4BKqns-unsplash.jpg"
 
 export default function AboutPage() {
+  const BUSINESS = useBusiness()
   return (
     <main className="w-full min-h-screen bg-background">
       {/* Hero */}

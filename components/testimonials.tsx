@@ -4,27 +4,30 @@ import { Star } from "lucide-react"
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
 
+/** Quotes sourced from public Google Maps reviews (Flo's Pizza & Roast Beef, Brockton). */
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/place/Flo%27s+Pizza+%26+Roast+Beef/@42.0867749,-70.9882542,17z/data=!3m1!4b1!4m6!3m5!1s0x89e49bcc65a54ad9:0x97346ffc1ffd176d!8m2!3d42.0867749!4d-70.9882542!16s%2Fg%2F11h3ld_gf1"
+
 const testimonials = [
   {
     quote:
-      "Flo's Pizza sets the gold standard for neighborhood pizza. The hand-tossed crust is perfect every time, and the fresh ingredients make all the difference. Best pizza in Brockton!",
-    name: "Sarah M.",
-    role: "Brockton Resident",
-    initials: "SM",
+      "Just had a delicious Italian calzone with banana peppers, and pepperoni.",
+    name: "Dylan N.",
+    role: "Google review · Brockton",
+    initials: "DN",
+  },
+  {
+    quote: "Great food, great service, and a cozy vibe.",
+    name: "Erik W.",
+    role: "Google review · Brockton",
+    initials: "EW",
   },
   {
     quote:
-      "Best catering we've ever had! We ordered platters for our company event and everything was fresh and delicious. The chicken broccoli ziti was a huge hit with everyone.",
-    name: "Mike R.",
-    role: "Regular Customer",
-    initials: "MR",
-  },
-  {
-    quote:
-      "Their breakfast menu is incredible! The brioche french toast with fresh berries is a must-try. We come here every Sunday morning — it's become our family tradition.",
-    name: "Jessica T.",
-    role: "Food Enthusiast",
-    initials: "JT",
+      "Nice, to be served by people who care about what they give their customers.",
+    name: "Rita G.",
+    role: "Google review · Brockton",
+    initials: "RG",
   },
 ]
 
@@ -47,8 +50,16 @@ export default function Testimonials() {
           <h2 className="font-display text-[#C1272D] text-4xl md:text-5xl">
             What Our Customers Say
           </h2>
-          <p className="font-body text-muted-foreground text-lg">
-            Join hundreds of satisfied customers who love Flo&apos;s Pizza
+          <p className="font-body text-muted-foreground text-lg max-w-2xl">
+            Real feedback from Google reviews —{" "}
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C1272D] underline underline-offset-2 hover:opacity-90"
+            >
+              read more on Google Maps
+            </a>
           </p>
         </div>
 

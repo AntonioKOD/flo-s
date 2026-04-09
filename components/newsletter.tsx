@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import { motion } from "motion/react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 export default function Newsletter() {
+  const BUSINESS = useBusiness()
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -70,7 +71,7 @@ export default function Newsletter() {
                       We sent a unique <span className="font-bold">10% OFF</span> code to your
                       inbox. Use it at checkout on our{" "}
                       <a
-                        href={BUSINESS.urls.orderOnline}
+                        href={BUSINESS.urls?.orderOnline ?? "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#C1272D] underline underline-offset-2"
