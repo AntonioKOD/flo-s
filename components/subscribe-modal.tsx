@@ -19,10 +19,8 @@ export default function SubscribeModal() {
   const [error, setError] = useState("")
 
   useEffect(() => {
-    if (hasSubscribedCookie()) return
-    if (sessionStorage.getItem("flos_modal_dismissed")) return
-    const timer = setTimeout(() => setOpen(true), 4000)
-    return () => clearTimeout(timer)
+    // Modal disabled for now
+    return
   }, [])
 
   function dismiss() {
