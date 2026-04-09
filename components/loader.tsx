@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import Image from "next/image"
 
 export default function Loader() {
   const [show, setShow] = useState(false)
@@ -25,16 +26,22 @@ export default function Loader() {
           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
           style={{ transformOrigin: "top" }}
         >
-          <motion.h1
-            className="font-display text-white text-5xl md:text-7xl mb-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Flo&apos;s Pizza
-          </motion.h1>
+            <Image
+              src="/flospizza.png"
+              alt="Flo's Pizza"
+              width={150}
+              height={150}
+              priority
+              className="drop-shadow-2xl"
+            />
+          </motion.div>
           <motion.p
-            className="font-body text-white/70 text-lg tracking-widest uppercase"
+            className="font-body text-white/70 text-lg tracking-widest uppercase mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}

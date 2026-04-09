@@ -1,6 +1,5 @@
 import Hero from "@/components/hero"
 import AboutSection from "@/components/about-section"
-import ContactSection from "@/components/contact-section"
 import MarqueeText from "@/components/marquee-text"
 import MenuSection from "@/components/menu-section"
 import WeeklySpecial from "@/components/weekly-special"
@@ -67,7 +66,6 @@ export default function Home() {
         <Testimonials />
         <Divider />
         <Newsletter />
-        <ContactSection />
         <Footer />
         <SubscribeModal />
       </div>

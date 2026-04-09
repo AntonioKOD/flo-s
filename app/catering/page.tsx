@@ -129,7 +129,7 @@ export default function CateringPage() {
                 Call Us: {BUSINESS.phone}
               </a>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="px-6 py-3 bg-transparent border-2 border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 font-body font-medium rounded-full transition-colors duration-200"
               >
                 Visit Our Location

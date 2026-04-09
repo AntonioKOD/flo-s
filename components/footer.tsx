@@ -21,10 +21,13 @@ export default function Footer() {
               <Link href="/menu" className="hover:text-[#C1272D] transition-colors">
                 Menu
               </Link>
+              <Link href="/about" className="hover:text-[#C1272D] transition-colors">
+                About
+              </Link>
               <Link href="/catering" className="hover:text-[#C1272D] transition-colors">
                 Catering
               </Link>
-              <Link href="/#contact" className="hover:text-[#C1272D] transition-colors">
+              <Link href="/contact" className="hover:text-[#C1272D] transition-colors">
                 Contact
               </Link>
               <a
