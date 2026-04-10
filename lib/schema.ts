@@ -1,147 +1,83 @@
-import { BUSINESS } from "./constants";
-import { MENU_ITEMS } from "./menu-data";
+import { BUSINESS } from "@/lib/business"
 
-const BASE_URL = BUSINESS.urls.website;
+const site = BUSINESS.urls.website
 
-export function getRestaurantSchema() {
+export function generateRestaurantSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "@id": `${BASE_URL}/#restaurant`,
     name: BUSINESS.name,
-    image: `${BASE_URL}/flospizza.png`,
-    url: BASE_URL,
-    telephone: BUSINESS.phoneE164,
-    priceRange: "$$",
+    image: `${site}/flospizza.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: BUSINESS.address.street,
       addressLocality: BUSINESS.address.city,
       addressRegion: BUSINESS.address.state,
       postalCode: BUSINESS.address.zip,
-      addressCountry: BUSINESS.address.country,
+      addressCountry: "US",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: BUSINESS.geo.latitude,
-      longitude: BUSINESS.geo.longitude,
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: BUSINESS.hours.weekdays.open,
-        closes: BUSINESS.hours.weekdays.close,
-      },
-    ],
-    servesCuisine: "Italian",
-    menu: BUSINESS.urls.orderOnline,
-    acceptsReservations: false,
-    paymentAccepted: "Cash, Credit Card, Debit Card",
-    currenciesAccepted: "USD",
-    hasMap: BUSINESS.urls.googleMaps,
-    areaServed: BUSINESS.serviceAreas.map((city) => ({
-      "@type": "City",
-      name: city,
-    })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "50",
-    },
-  };
+    telephone: "+17744805155",
+    url: site,
+    servesCuisine: ["Pizza", "Italian", "American"],
+    priceRange: "$$",
+  }
 }
 
-export function getLocalBusinessSchema() {
+export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `${BASE_URL}/#business`,
     name: BUSINESS.name,
-    image: `${BASE_URL}/flospizza.png`,
-    logo: `${BASE_URL}/flospizza.png`,
-    url: BASE_URL,
-    telephone: BUSINESS.phoneE164,
-    priceRange: "$$",
+    image: `${site}/flospizza.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: BUSINESS.address.street,
       addressLocality: BUSINESS.address.city,
       addressRegion: BUSINESS.address.state,
       postalCode: BUSINESS.address.zip,
-      addressCountry: BUSINESS.address.country,
+      addressCountry: "US",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: BUSINESS.geo.latitude,
-      longitude: BUSINESS.geo.longitude,
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: BUSINESS.hours.weekdays.open,
-        closes: BUSINESS.hours.weekdays.close,
-      },
-    ],
-    servesCuisine: "Italian",
-    menu: BUSINESS.urls.orderOnline,
-    acceptsReservations: false,
-    paymentAccepted: "Cash, Credit Card, Debit Card",
-    currenciesAccepted: "USD",
-    areaServed: BUSINESS.serviceAreas.map((city) => ({
-      "@type": "City",
-      name: city,
-    })),
-  };
+    telephone: "+17744805155",
+    url: site,
+  }
 }
 
-export function getOrganizationSchema() {
+export function generateOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${BASE_URL}/#organization`,
     name: BUSINESS.name,
-    url: BASE_URL,
-    logo: `${BASE_URL}/flospizza.png`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: BUSINESS.phoneE164,
-      contactType: "Customer Service",
-      areaServed: "US",
-      availableLanguage: "English",
+    url: site,
+    logo: `${site}/flospizza.png`,
+    telephone: "+17744805155",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: BUSINESS.address.street,
+      addressLocality: BUSINESS.address.city,
+      addressRegion: BUSINESS.address.state,
+      postalCode: BUSINESS.address.zip,
+      addressCountry: "US",
     },
-  };
+  }
 }
 
-export function getWebSiteSchema() {
+export function generateWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${BASE_URL}/#website`,
     name: BUSINESS.name,
-    url: BASE_URL,
-    description: `${BUSINESS.name} in ${BUSINESS.address.city}, ${BUSINESS.address.state}. Fresh, handcrafted pizza made with authentic ingredients. Stone-baked perfection.`,
-  };
+    url: site,
+    publisher: {
+      "@type": "Organization",
+      name: BUSINESS.name,
+      url: site,
+    },
+  }
 }
 
-export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
+export function generateBreadcrumbSchema(
+  items: { name: string; url: string }[]
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -151,31 +87,5 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
       name: item.name,
       item: item.url,
     })),
-  };
-}
-
-export function getMenuSchema() {
-  const categories = [...new Set(MENU_ITEMS.map((i) => i.category))];
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Menu",
-    "@id": `${BASE_URL}/menu#menu`,
-    name: `${BUSINESS.name} Menu`,
-    url: `${BASE_URL}/menu`,
-    hasMenuSection: categories.map((cat) => ({
-      "@type": "MenuSection",
-      name: cat,
-      hasMenuItem: MENU_ITEMS.filter((i) => i.category === cat).map((item) => ({
-        "@type": "MenuItem",
-        name: item.name,
-        ...(item.description && { description: item.description }),
-        offers: {
-          "@type": "Offer",
-          price: item.prices[0].amount,
-          priceCurrency: "USD",
-        },
-      })),
-    })),
-  };
+  }
 }

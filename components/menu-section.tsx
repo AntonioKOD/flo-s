@@ -3,8 +3,8 @@
 import { ShoppingCart, Star } from "lucide-react"
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { formatPrice } from "@/lib/menu-data"
-import { useBusiness, useMenu, type MenuItem } from "aicms"
+import { FEATURED_ITEMS, formatPrice, type MenuItem } from "@/lib/menu-data"
+import { BUSINESS } from "@/lib/constants"
 
 function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
   return (
@@ -22,8 +22,9 @@ function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
   )
 }
 
+const STATIC_REVIEWS = [42, 31, 57, 28, 63, 35]
+
 function MenuCard({ item, index }: { item: MenuItem; index: number }) {
-  const BUSINESS = useBusiness()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
@@ -42,7 +43,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 
       <div className="p-6">
         <h3 className="font-display text-foreground text-xl mb-2">{item.name}</h3>
-        <StarRating rating={5} reviews={Math.floor(Math.random() * 40 + 20)} />
+        <StarRating rating={5} reviews={STATIC_REVIEWS[index % STATIC_REVIEWS.length]} />
         {item.description && (
           <p className="font-body text-muted-foreground text-sm mt-3 mb-4 line-clamp-2">
             {item.description}
@@ -53,10 +54,10 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
           <span className="font-display text-[#C1272D] text-2xl">
             {item.prices.length === 1
               ? formatPrice(item.prices[0].amount)
-              : item.prices.map((p: { label?: string; amount: number }) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount))).join(" · ")}
+              : item.prices.map((p) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount))).join(" · ")}
           </span>
           <a
-            href={BUSINESS.urls?.orderOnline ?? "#"}
+            href={BUSINESS.urls.orderOnline}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 hover:text-[#C1272D] transition-colors"
@@ -76,9 +77,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 }
 
 export default function MenuSection() {
-  const BUSINESS = useBusiness()
-  const { items } = useMenu()
-  const FEATURED_ITEMS = items.filter((i) => i.popular)
   return (
     <section className="bg-[#fafafa] py-20 px-4">
       <div className="container mx-auto max-w-[1240px]">
@@ -109,7 +107,7 @@ export default function MenuSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <a
-            href={BUSINESS.urls?.orderOnline ?? "#"}
+            href={BUSINESS.urls.orderOnline}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#C1272D] text-white font-body font-semibold px-8 py-4 rounded-full hover:bg-[#a01f25] transition-colors"

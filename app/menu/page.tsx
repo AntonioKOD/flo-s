@@ -2,34 +2,33 @@ import MenuGrid from "@/components/menu-grid"
 import MarqueeText from "@/components/marquee-text"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
-import { generatePageMetadata, getBusiness, generateRestaurantSchema, generateBreadcrumbSchema } from "aicms/server"
+import {
+  generateRestaurantSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/schema"
+import { BUSINESS } from "@/lib/constants"
 import type { Metadata } from "next"
 
-export async function generateMetadata(): Promise<Metadata> {
-  const biz = await getBusiness()
-  return generatePageMetadata("menu", {
-    title: "Menu",
-    description: `Browse the full ${biz.name} menu. Pizza, catering platters, brunch items, and more. Order online for pickup or delivery in ${biz.address.city}, ${biz.address.state}.`,
-    alternates: {
-      canonical: `${biz.urls?.website ?? ""}/menu`,
-    },
-  })
+export const metadata: Metadata = {
+  title: "Menu",
+  description: `Browse the full ${BUSINESS.name} menu. Pizza, catering platters, brunch items, and more. Order online for pickup or delivery in ${BUSINESS.address.city}, ${BUSINESS.address.state}.`,
+  alternates: {
+    canonical: `${BUSINESS.urls.website}/menu`,
+  },
 }
 
-export default async function MenuPage() {
-  const biz = await getBusiness()
+export default function MenuPage() {
+  const schemas = [
+    generateRestaurantSchema(),
+    generateBreadcrumbSchema([
+      { name: "Home", url: BUSINESS.urls.website },
+      { name: "Menu", url: `${BUSINESS.urls.website}/menu` },
+    ]),
+  ]
 
   return (
     <>
-      <JsonLd
-        data={[
-          await generateRestaurantSchema(),
-          await generateBreadcrumbSchema([
-            { name: "Home", url: biz.urls?.website ?? "" },
-            { name: "Menu", url: `${biz.urls?.website ?? ""}/menu` },
-          ]),
-        ]}
-      />
+      <JsonLd data={schemas} />
 
       <main className="min-h-screen bg-background">
         {/* Hero */}
@@ -66,7 +65,7 @@ export default async function MenuPage() {
               Place your order online for pickup or delivery. Fresh and hot, ready when you are.
             </p>
             <a
-              href={biz.urls?.orderOnline ?? "#"}
+              href={BUSINESS.urls.orderOnline}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#C1272D] text-white font-body font-semibold px-10 py-4 rounded-full hover:bg-[#a01f25] transition-colors"

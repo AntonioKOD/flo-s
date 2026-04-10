@@ -16,25 +16,21 @@ import {
   generateOrganizationSchema,
   generateWebSiteSchema,
   generateBreadcrumbSchema,
-  getBusiness,
-} from "aicms/server"
+} from "@/lib/schema"
+import { BUSINESS } from "@/lib/constants"
 
-export default async function Home() {
-  const biz = await getBusiness()
+export default function Home() {
+  const schemas = [
+    generateRestaurantSchema(),
+    generateLocalBusinessSchema(),
+    generateOrganizationSchema(),
+    generateWebSiteSchema(),
+    generateBreadcrumbSchema([{ name: "Home", url: BUSINESS.urls.website }]),
+  ]
 
   return (
     <>
-      <JsonLd
-        data={[
-          await generateRestaurantSchema(),
-          await generateLocalBusinessSchema(),
-          await generateOrganizationSchema(),
-          await generateWebSiteSchema(),
-          await generateBreadcrumbSchema([
-            { name: "Home", url: biz.urls?.website ?? "" },
-          ]),
-        ]}
-      />
+      <JsonLd data={schemas} />
       <div className="relative w-full h-full">
         <Hero />
         <MarqueeText

@@ -4,11 +4,10 @@ import { motion } from "motion/react"
 import { Phone, MapPin, Clock, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 import Footer from "@/components/footer"
 
 export default function ContactPage() {
-  const BUSINESS = useBusiness()
   return (
     <main className="w-full min-h-screen bg-background">
       {/* Hero */}
@@ -50,7 +49,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div className="flex justify-between items-center border-b border-gray-700 pb-3">
                   <span className="text-gray-300 font-body">Monday - Sunday</span>
-                  <span className="text-white font-body font-medium">{BUSINESS.hours.weekdays.display}</span>
+                  <span className="text-white font-body font-medium">{BUSINESS.hours?.weekdays?.display ?? ""}</span>
                 </div>
               </div>
             </motion.div>
@@ -99,7 +98,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-gray-400" />
-                  <a href={BUSINESS.phoneTel} className="text-gray-300 font-body hover:text-white transition-colors">
+                  <a href={BUSINESS.phoneTel ?? "#"} className="text-gray-300 font-body hover:text-white transition-colors">
                     {BUSINESS.phone}
                   </a>
                 </div>
@@ -190,7 +189,7 @@ export default function ContactPage() {
                 Order Online
               </a>
               <a
-                href={BUSINESS.phoneTel}
+                href={BUSINESS.phoneTel ?? "#"}
                 className="px-8 py-3 bg-transparent border-2 border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D]/10 font-body font-medium rounded-full transition-colors duration-200"
               >
                 Call Us: {BUSINESS.phone}

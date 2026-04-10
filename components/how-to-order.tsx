@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 
 const steps = [
   {
@@ -55,7 +55,6 @@ function StepCard({ step, index }: { step: (typeof steps)[number]; index: number
 }
 
 export default function HowToOrder() {
-  const BUSINESS = useBusiness()
   return (
     <section className="bg-[#fafafa] py-20 px-4">
       <div className="container mx-auto max-w-[1240px]">

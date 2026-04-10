@@ -4,10 +4,9 @@ import { motion } from "motion/react"
 import { Phone, MapPin, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 
 export default function ContactSection() {
-  const BUSINESS = useBusiness()
   return (
     <section className="w-full py-16 md:py-24 bg-[#1a1a1a] text-white" id="contact">
       <div className="container mx-auto px-4 md:px-8">
@@ -44,7 +43,7 @@ export default function ContactSection() {
             <div className="space-y-4">
               <div className="flex justify-between items-center border-b border-gray-700 pb-3">
                 <span className="text-gray-300 font-body">Monday - Sunday</span>
-                <span className="text-white font-body font-medium">{BUSINESS.hours.weekdays.display}</span>
+                <span className="text-white font-body font-medium">{BUSINESS.hours?.weekdays?.display ?? ""}</span>
               </div>
             </div>
           </motion.div>
@@ -95,7 +94,7 @@ export default function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-gray-400" />
-                <a href={BUSINESS.phoneTel} className="text-gray-300 font-body hover:text-white transition-colors">
+                <a href={BUSINESS.phoneTel ?? "#"} className="text-gray-300 font-body hover:text-white transition-colors">
                   {BUSINESS.phone}
                 </a>
               </div>

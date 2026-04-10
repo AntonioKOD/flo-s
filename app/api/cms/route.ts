@@ -1,4 +1,6 @@
 import { createCmsApiHandler } from "aicms/server";
 
-export const POST = createCmsApiHandler();
-export const GET = createCmsApiHandler();
+const handler = createCmsApiHandler();
+
+export const GET = handler;
+export const POST = handler;

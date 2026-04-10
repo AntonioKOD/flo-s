@@ -3,17 +3,10 @@
 import React from "react"
 import { motion } from "motion/react"
 import Link from "next/link"
-import { formatPrice } from "@/lib/menu-data"
-import { useBusiness, useMenu } from "aicms"
+import { CATERING_SECTIONS, formatPrice } from "@/lib/menu-data"
+import { BUSINESS } from "@/lib/constants"
 
 export default function CateringPage() {
-  const BUSINESS = useBusiness()
-  const { items, categories } = useMenu()
-  const CATERING_SECTIONS = categories.map((cat) => ({
-    title: cat,
-    subtitle: "",
-    items: items.filter((i) => i.category === cat),
-  }))
   return (
     <main className="w-full min-h-screen bg-background">
       {/* Hero Section */}
@@ -130,7 +123,7 @@ export default function CateringPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href={BUSINESS.phoneTel}
+                href={BUSINESS.phoneTel ?? "#"}
                 className="px-6 py-3 bg-[#C1272D] hover:bg-[#a01f25] text-white font-body font-medium rounded-full transition-colors duration-200"
               >
                 Call Us: {BUSINESS.phone}

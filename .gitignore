@@ -40,5 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AICMS
+# aicms database files
 aicms.db
+aicms.db-shm
+aicms.db-wal

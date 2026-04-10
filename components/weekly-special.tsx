@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 
 const TARGET_DATE = new Date()
 TARGET_DATE.setDate(TARGET_DATE.getDate() + 3)
@@ -40,7 +40,6 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 }
 
 export default function WeeklySpecial() {
-  const BUSINESS = useBusiness()
   const timeLeft = useCountdown(TARGET_DATE)
 
   return (

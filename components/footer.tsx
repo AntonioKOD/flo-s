@@ -2,10 +2,9 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 
 export default function Footer() {
-  const BUSINESS = useBusiness()
   return (
     <footer className="py-10 border-t-2 border-gray-200 shadow-lg bg-background">
       <div className="container mx-auto px-4">
@@ -48,7 +47,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm font-body">
               <div className="flex justify-between md:block">
                 <span className="font-semibold">Monday - Sunday:</span>
-                <span className="ml-2">{BUSINESS.hours.weekdays.display}</span>
+                <span className="ml-2">{BUSINESS.hours?.weekdays?.display ?? ""}</span>
               </div>
             </div>
           </div>
@@ -63,7 +62,7 @@ export default function Footer() {
               </p>
               <p className="mt-4">
                 <a
-                  href={BUSINESS.phoneTel}
+                  href={BUSINESS.phoneTel ?? "#"}
                   className="font-semibold hover:text-[#C1272D] transition-colors"
                 >
                   {BUSINESS.phone}

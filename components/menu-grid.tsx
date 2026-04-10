@@ -2,14 +2,13 @@
 
 import { useState, useRef } from "react"
 import { motion, useInView, AnimatePresence } from "motion/react"
-import { formatPrice, type MenuItem } from "@/lib/menu-data"
-import { useBusiness, useMenu } from "aicms"
+import { MENU_ITEMS, formatPrice, type MenuItem } from "@/lib/menu-data"
+import { BUSINESS } from "@/lib/constants"
 
 const CATEGORIES = ["All", "Appetizers", "Platters", "Brunch"] as const
 type Category = (typeof CATEGORIES)[number]
 
 function MenuCard({ item, index }: { item: MenuItem; index: number }) {
-  const BUSINESS = useBusiness()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-40px" })
 
@@ -42,7 +41,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         )}
         {/* Hover overlay */}
         <a
-          href={BUSINESS.urls?.orderOnline ?? "#"}
+          href={BUSINESS.urls.orderOnline}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute inset-0 bg-[#C1272D]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -65,7 +64,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
           <span className="font-display text-[#C1272D] text-xl">{priceDisplay}</span>
           {/* Mobile order link */}
           <a
-            href={BUSINESS.urls?.orderOnline ?? "#"}
+            href={BUSINESS.urls.orderOnline}
             target="_blank"
             rel="noopener noreferrer"
             className="md:hidden text-[#C1272D] font-body font-semibold text-sm"
@@ -79,8 +78,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 }
 
 export default function MenuGrid() {
-  const BUSINESS = useBusiness()
-  const { items: MENU_ITEMS } = useMenu()
   const [active, setActive] = useState<Category>("All")
 
   const filtered = active === "All" ? MENU_ITEMS : MENU_ITEMS.filter((i) => i.category === active)

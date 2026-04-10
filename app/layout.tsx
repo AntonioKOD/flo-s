@@ -4,8 +4,9 @@ import "./globals.css";
 import ConditionalNavBar from "@/components/conditional-navbar";
 import Loader from "@/components/loader";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import type { Metadata } from "next";
 import { CmsProvider } from "aicms";
-import { generateCmsMetadata, getSiteContent } from "aicms/server";
+import { getSiteContent, generateCmsMetadata } from "aicms/server";
 import { CmsWidget } from "aicms/widget";
 
 const geistSans = Geist({
@@ -30,18 +31,20 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-export async function generateMetadata() {
-  return generateCmsMetadata("home", {
+export async function generateMetadata(): Promise<Metadata> {
+  const base = await generateCmsMetadata("home");
+  return {
+    ...base,
     metadataBase: new URL("https://flospizza.com"),
     category: "Restaurant",
     classification: "Pizza Restaurant",
     other: {
       "geo.region": "US-MA",
       "geo.placename": "Brockton",
-      "geo.position": "42.0834;-71.0184",
-      "ICBM": "42.0834, -71.0184",
+      "geo.position": "42.0867749;-70.9882542",
+      ICBM: "42.0867749, -70.9882542",
     },
-  });
+  };
 }
 
 export default async function RootLayout({
@@ -50,7 +53,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const content = await getSiteContent();
-
   return (
     <html lang="en">
       <head>

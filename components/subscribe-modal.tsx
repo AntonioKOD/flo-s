@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { X } from "lucide-react"
-import { useBusiness } from "aicms"
+import { BUSINESS } from "@/lib/constants"
 
 const COOKIE_NAME = "flos_subscribed"
 
@@ -12,7 +12,6 @@ function hasSubscribedCookie() {
 }
 
 export default function SubscribeModal() {
-  const BUSINESS = useBusiness()
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
