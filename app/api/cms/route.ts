@@ -1,6 +1,9 @@
-import { createCmsApiHandler } from "aicms/server";
+import { NextResponse } from "next/server"
 
-const handler = createCmsApiHandler();
+export function GET() {
+  return NextResponse.json({ error: "Not found" }, { status: 404 })
+}
 
-export const GET = handler;
-export const POST = handler;
+export function POST() {
+  return NextResponse.json({ error: "Not found" }, { status: 404 })
+}

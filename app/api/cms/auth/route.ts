@@ -1,3 +1,5 @@
-import { createCmsAuthHandler } from "aicms/server";
+import { NextResponse } from "next/server"
 
-export const POST = createCmsAuthHandler();
+export function POST() {
+  return NextResponse.json({ error: "Not found" }, { status: 404 })
+}
