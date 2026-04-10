@@ -4,9 +4,10 @@ import { motion } from "motion/react"
 import { Phone, MapPin, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 export default function ContactSection() {
+  const BUSINESS = useBusiness()
   return (
     <section className="w-full py-16 md:py-24 bg-[#1a1a1a] text-white" id="contact">
       <div className="container mx-auto px-4 md:px-8">

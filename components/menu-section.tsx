@@ -36,7 +36,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      {/* Placeholder image area */}
       <div className="h-[180px] w-full bg-gradient-to-br from-[#C1272D]/10 to-[#214A32]/10 flex items-center justify-center">
         <span className="text-5xl">🍕</span>
       </div>
@@ -107,9 +106,7 @@ export default function MenuSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <a
-            href={BUSINESS.urls.orderOnline}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/menu"
             className="bg-[#C1272D] text-white font-body font-semibold px-8 py-4 rounded-full hover:bg-[#a01f25] transition-colors"
           >
             View Full Menu

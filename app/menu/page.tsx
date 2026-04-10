@@ -29,9 +29,7 @@ export default function MenuPage() {
   return (
     <>
       <JsonLd data={schemas} />
-
       <main className="min-h-screen bg-background">
-        {/* Hero */}
         <section className="pt-32 pb-12 px-4 text-center">
           <h1 className="font-display text-[#C1272D] text-5xl md:text-6xl lg:text-7xl mb-4">
             Our Menu
@@ -48,14 +46,12 @@ export default function MenuPage() {
           speed="slow"
         />
 
-        {/* Menu Grid */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-[1280px]">
             <MenuGrid />
           </div>
         </section>
 
-        {/* CTA */}
         <section className="py-16 px-4 bg-[#1c1c1c]">
           <div className="text-center">
             <h2 className="font-display text-white text-3xl md:text-4xl mb-4">

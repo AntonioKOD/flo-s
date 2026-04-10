@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import { motion } from "motion/react"
-import { BUSINESS } from "@/lib/constants"
+import { useBusiness } from "aicms"
 
 export default function Newsletter() {
+  const BUSINESS = useBusiness()
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

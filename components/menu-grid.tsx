@@ -29,7 +29,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       transition={{ duration: 0.4, delay: index * 0.04 }}
       className="bg-white rounded-2xl shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)] overflow-hidden group"
     >
-      {/* Placeholder / color area */}
       <div className="h-[140px] w-full bg-gradient-to-br from-[#C1272D]/8 to-[#214A32]/8 flex items-center justify-center relative">
         <span className="text-4xl">
           {item.category === "Brunch" ? "🥞" : item.category === "Platters" ? "🍽️" : "🍕"}
@@ -39,16 +38,13 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
             Best Seller
           </span>
         )}
-        {/* Hover overlay */}
         <a
           href={BUSINESS.urls.orderOnline}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute inset-0 bg-[#C1272D]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         >
-          <span className="text-white font-body font-semibold text-sm">
-            Order This &rarr;
-          </span>
+          <span className="text-white font-body font-semibold text-sm">Order This &rarr;</span>
         </a>
       </div>
 
@@ -62,7 +58,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         {!item.description && <div className="mb-3" />}
         <div className="flex items-center justify-between">
           <span className="font-display text-[#C1272D] text-xl">{priceDisplay}</span>
-          {/* Mobile order link */}
           <a
             href={BUSINESS.urls.orderOnline}
             target="_blank"
@@ -79,12 +74,10 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 
 export default function MenuGrid() {
   const [active, setActive] = useState<Category>("All")
-
   const filtered = active === "All" ? MENU_ITEMS : MENU_ITEMS.filter((i) => i.category === active)
 
   return (
     <div>
-      {/* Filter tabs */}
       <div className="flex flex-wrap justify-center gap-3 mb-10">
         {CATEGORIES.map((cat) => (
           <button
@@ -101,7 +94,6 @@ export default function MenuGrid() {
         ))}
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <AnimatePresence mode="popLayout">
           {filtered.map((item, i) => (
