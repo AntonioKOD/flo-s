@@ -11,26 +11,27 @@ import Footer from "@/components/footer"
 import Divider from "@/components/divider"
 import { JsonLd } from "@/components/json-ld"
 import {
+  getBusiness,
   generateRestaurantSchema,
   generateLocalBusinessSchema,
   generateOrganizationSchema,
   generateWebSiteSchema,
   generateBreadcrumbSchema,
-} from "@/lib/schema"
-import { BUSINESS } from "@/lib/constants"
+} from "aicms/server"
 
-export default function Home() {
-  const schemas = [
+export default async function Home() {
+  const biz = await getBusiness()
+  const [restaurant, localBiz, org, website, breadcrumb] = await Promise.all([
     generateRestaurantSchema(),
     generateLocalBusinessSchema(),
     generateOrganizationSchema(),
     generateWebSiteSchema(),
-    generateBreadcrumbSchema([{ name: "Home", url: BUSINESS.urls.website }]),
-  ]
+    generateBreadcrumbSchema([{ name: "Home", url: biz.urls?.website ?? "https://flospizza.com" }]),
+  ])
 
   return (
     <>
-      <JsonLd data={schemas} />
+      <JsonLd data={[restaurant, localBiz, org, website, breadcrumb]} />
       <div className="relative w-full h-full">
         <Hero />
         <MarqueeText
