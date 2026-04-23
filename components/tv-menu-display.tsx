@@ -56,6 +56,8 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
   const time = useClock()
   const col1 = items.slice(0, half)
   const col2 = items.slice(half)
+  // Only show descriptions when columns are short enough to have breathing room
+  const showDescriptions = half <= 8
 
   return (
     <>
@@ -232,11 +234,12 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           min-height: 0;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          padding: 0 0;
+          justify-content: flex-start;
+          padding: 0.55vh 0 0;
           border-bottom: 1px solid #1E1E1C;
           animation: fadeInUp 0.4s ease-out both;
           overflow: hidden;
+          background: #111110;
         }
 
         .tv-item:last-child {
@@ -409,7 +412,7 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
                   <span className="tv-item-dots" />
                   <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
-                {item.description && (
+                {showDescriptions && item.description && (
                   <span className="tv-item-desc">{item.description}</span>
                 )}
               </div>
@@ -427,7 +430,7 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
                   <span className="tv-item-dots" />
                   <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
-                {item.description && (
+                {showDescriptions && item.description && (
                   <span className="tv-item-desc">{item.description}</span>
                 )}
               </div>
