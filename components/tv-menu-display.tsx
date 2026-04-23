@@ -48,7 +48,7 @@ const formatPrice = (price: number) =>
 function formatPrices(prices: Price[]): string {
   return prices
     .map((p) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount)))
-    .join("  ·  ")
+    .join("   ·   ")
 }
 
 export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily Menu" }: Props) {
@@ -56,8 +56,8 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
   const time = useClock()
   const col1 = items.slice(0, half)
   const col2 = items.slice(half)
-  // Only show descriptions when columns are short enough to have breathing room
-  const showDescriptions = half <= 8
+  // Show descriptions only when columns are short enough to have breathing room
+  const showDescriptions = half <= 7
 
   return (
     <>
@@ -86,28 +86,27 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1.8vh 3.5vw;
-          border-bottom: 1px solid #2A2A28;
-          background: #111110;
+          padding: 1.6vh 3.5vw;
+          border-bottom: 1px solid #252523;
           flex-shrink: 0;
         }
 
         .tv-brand {
           display: flex;
           align-items: center;
-          gap: 1.2em;
+          gap: 1.1em;
         }
 
         .tv-brand-dot {
-          width: 10px;
-          height: 10px;
+          width: 9px;
+          height: 9px;
           border-radius: 50%;
           background: #C1272D;
           flex-shrink: 0;
         }
 
         .tv-brand-name {
-          font-size: clamp(1.6rem, 2.8vw, 3.5rem);
+          font-size: clamp(1.5rem, 2.5vw, 3.2rem);
           font-weight: 700;
           color: #F5F0E8;
           letter-spacing: -0.02em;
@@ -115,23 +114,19 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           font-family: var(--font-righteous), var(--font-geist-sans), sans-serif;
         }
 
-        .tv-brand-name span {
-          color: #C1272D;
-        }
+        .tv-brand-name span { color: #C1272D; }
 
         .tv-brand-divider {
           width: 1px;
-          height: clamp(1.5rem, 2.5vw, 3rem);
-          background: #2A2A28;
+          height: clamp(1.4rem, 2.2vw, 2.8rem);
+          background: #252523;
           flex-shrink: 0;
         }
 
         .tv-brand-tag {
-          font-size: clamp(0.7rem, 0.95vw, 1.1rem);
-          color: #6A6560;
-          font-weight: 400;
-          letter-spacing: 0.02em;
-          line-height: 1.55;
+          font-size: clamp(0.65rem, 0.9vw, 1.05rem);
+          color: #555450;
+          line-height: 1.6;
         }
 
         .tv-header-right {
@@ -141,44 +136,42 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         .tv-clock {
-          font-size: clamp(1.4rem, 2.4vw, 3rem);
+          font-size: clamp(1.3rem, 2.2vw, 2.8rem);
           font-weight: 700;
           color: #F5F0E8;
           font-family: var(--font-geist-mono), monospace;
           letter-spacing: 0.06em;
         }
 
-        .tv-header-meta {
-          text-align: right;
-        }
+        .tv-header-meta { text-align: right; }
 
         .tv-header-badge {
           display: inline-block;
           background: #C1272D;
           color: #F5F0E8;
-          font-size: clamp(0.55rem, 0.7vw, 0.85rem);
+          font-size: clamp(0.5rem, 0.65vw, 0.8rem);
           font-weight: 700;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          padding: 0.3em 0.75em;
+          padding: 0.3em 0.7em;
           border-radius: 3px;
-          margin-bottom: 0.45em;
+          margin-bottom: 0.4em;
         }
 
         .tv-header-contact {
-          font-size: clamp(0.65rem, 0.9vw, 1rem);
-          color: #6A6560;
+          font-size: clamp(0.6rem, 0.85vw, 0.95rem);
+          color: #555450;
           line-height: 1.6;
         }
 
         /* ── SECTION TITLE ── */
         .tv-section-header {
-          padding: 1.8vh 3.5vw 0;
+          padding: 1.5vh 3.5vw 0;
           flex-shrink: 0;
         }
 
         .tv-section-title {
-          font-size: clamp(2.8rem, 5.5vw, 7rem);
+          font-size: clamp(2.6rem, 5vw, 6.5rem);
           font-weight: 700;
           color: #F5F0E8;
           letter-spacing: -0.03em;
@@ -186,40 +179,36 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           font-family: var(--font-righteous), var(--font-geist-sans), sans-serif;
         }
 
-        .tv-section-title-accent {
-          color: #C1272D;
-        }
+        .tv-section-title-accent { color: #C1272D; }
 
         .tv-section-subtitle {
-          font-size: clamp(0.9rem, 1.3vw, 1.55rem);
-          color: #6A6560;
-          margin-top: 0.45em;
-          font-weight: 400;
+          font-size: clamp(0.85rem, 1.2vw, 1.45rem);
+          color: #555450;
+          margin-top: 0.4em;
           letter-spacing: 0.01em;
         }
 
         .tv-section-rule {
-          margin-top: 1.5vh;
+          margin-top: 1.2vh;
           height: 2px;
-          background: linear-gradient(90deg, #C1272D 0%, #C1272D 12%, #2A2A28 50%, transparent 100%);
+          background: linear-gradient(90deg, #C1272D 0%, #C1272D 10%, #252523 45%, transparent 100%);
         }
 
         /* ── MENU GRID ── */
         .tv-grid {
           flex: 1;
+          min-height: 0;
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
-          padding: 1.5vh 3.5vw 1.5vh;
+          padding: 1.2vh 3.5vw 1.5vh;
           overflow: hidden;
-          min-height: 0;
         }
 
         .tv-col-sep {
-          background: #2A2A28;
+          background: #222220;
           margin: 0 2.5vw;
         }
 
-        /* grid cells must be told to stretch to grid row height */
         .tv-col {
           display: flex;
           flex-direction: column;
@@ -227,94 +216,83 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           overflow: hidden;
         }
 
-        /* ── MENU ITEM ── */
-        /* flex: 1 distributes height equally — no items ever clip */
+        /* ── MENU ITEM ──
+           flex:1 distributes column height equally among all items.
+           Name + price stack vertically — nothing overflows horizontally. */
         .tv-item {
           flex: 1;
           min-height: 0;
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          padding: 0.55vh 0 0;
-          border-bottom: 1px solid #1E1E1C;
-          animation: fadeInUp 0.4s ease-out both;
+          justify-content: center;
+          padding: 0 0.2vw;
+          border-bottom: 1px solid #1D1D1B;
           overflow: hidden;
           background: #111110;
+          animation: fadeInUp 0.35s ease-out both;
         }
 
-        .tv-item:last-child {
-          border-bottom: none;
-        }
+        .tv-item:last-child { border-bottom: none; }
 
         @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(6px); }
+          from { opacity: 0; transform: translateY(5px); }
           to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Name + price row */
-        .tv-item-row {
+        /* Name row: name + optional badge, full width */
+        .tv-item-name-row {
           display: flex;
-          align-items: baseline;
-          gap: 0.8em;
+          align-items: center;
+          gap: 0.6em;
+          line-height: 1;
         }
 
         .tv-item-name {
-          font-size: clamp(1.25rem, 2.1vw, 2.65rem);
+          font-size: clamp(1.15rem, 1.95vw, 2.5rem);
           font-weight: 600;
           color: #F5F0E8;
           letter-spacing: -0.015em;
-          line-height: 1.2;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          flex-shrink: 1;
-          min-width: 0;
+          line-height: 1.15;
+          /* allow long names to wrap rather than truncate */
+          word-break: break-word;
+          overflow-wrap: break-word;
         }
 
-        /* dot leader */
-        .tv-item-dots {
-          flex: 1;
-          border-bottom: 2px dotted #2E2E2C;
-          margin-bottom: 0.25em;
-          min-width: 1em;
-        }
-
-        .tv-item-price {
-          font-size: clamp(1.25rem, 2vw, 2.5rem);
-          font-weight: 700;
-          color: #C1272D;
-          letter-spacing: -0.01em;
-          white-space: nowrap;
-          flex-shrink: 0;
-        }
-
-        /* popular badge */
         .tv-popular-badge {
           display: inline-flex;
           align-items: center;
-          gap: 0.3em;
-          background: rgba(193,39,45,0.15);
-          border: 1px solid rgba(193,39,45,0.35);
-          color: #E06060;
-          font-size: clamp(0.5rem, 0.6vw, 0.72rem);
+          gap: 0.25em;
+          background: rgba(193,39,45,0.18);
+          border: 1px solid rgba(193,39,45,0.4);
+          color: #D96060;
+          font-size: clamp(0.48rem, 0.58vw, 0.7rem);
           font-weight: 700;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          padding: 0.2em 0.55em;
+          padding: 0.22em 0.55em;
           border-radius: 3px;
           white-space: nowrap;
-          vertical-align: middle;
-          margin-left: 0.4em;
           flex-shrink: 0;
-          align-self: center;
+        }
+
+        /* Price on its own line — always fully visible */
+        .tv-item-price {
+          font-size: clamp(1rem, 1.65vw, 2.1rem);
+          font-weight: 700;
+          color: #C1272D;
+          letter-spacing: -0.01em;
+          margin-top: 0.15em;
+          line-height: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .tv-item-desc {
-          font-size: clamp(0.78rem, 1.1vw, 1.35rem);
-          color: #52504C;
-          margin-top: 0.12em;
+          font-size: clamp(0.72rem, 1vw, 1.25rem);
+          color: #444240;
+          margin-top: 0.18em;
           line-height: 1;
-          font-weight: 400;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -327,9 +305,8 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1.2vh 3.5vw;
-          border-top: 1px solid #2A2A28;
-          background: #111110;
+          padding: 1.1vh 3.5vw;
+          border-top: 1px solid #252523;
         }
 
         .tv-footer-left {
@@ -342,20 +319,19 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           gap: 0.5em;
-          font-size: clamp(0.7rem, 1vw, 1.2rem);
-          color: #52504C;
-          font-weight: 400;
+          font-size: clamp(0.65rem, 0.95vw, 1.15rem);
+          color: #444240;
         }
 
         .tv-footer-icon {
           color: #C1272D;
-          width: clamp(12px, 1vw, 18px);
-          height: clamp(12px, 1vw, 18px);
+          width: clamp(11px, 0.9vw, 16px);
+          height: clamp(11px, 0.9vw, 16px);
           flex-shrink: 0;
         }
 
         .tv-footer-order {
-          font-size: clamp(0.75rem, 1.05vw, 1.25rem);
+          font-size: clamp(0.7rem, 1vw, 1.2rem);
           color: #C1272D;
           font-weight: 600;
           letter-spacing: 0.02em;
@@ -367,16 +343,13 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         <header className="tv-header">
           <div className="tv-brand">
             <div className="tv-brand-dot" />
-            <div className="tv-brand-name">
-              Flo&apos;s <span>Pizza</span>
-            </div>
+            <div className="tv-brand-name">Flo&apos;s <span>Pizza</span></div>
             <div className="tv-brand-divider" />
             <div className="tv-brand-tag">
               Brockton, MA &middot; Est. 2010<br />
               Handcrafted &middot; Fresh Daily
             </div>
           </div>
-
           <div className="tv-header-right">
             {time && <div className="tv-clock">{time}</div>}
             <div className="tv-header-meta">
@@ -406,14 +379,13 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           <div className="tv-col">
             {col1.map((item, i) => (
               <div className="tv-item" key={item.name} style={{ animationDelay: `${i * 0.04}s` }}>
-                <div className="tv-item-row">
+                <div className="tv-item-name-row">
                   <span className="tv-item-name">{item.name}</span>
                   {item.popular && <span className="tv-popular-badge">★ Popular</span>}
-                  <span className="tv-item-dots" />
-                  <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
+                <div className="tv-item-price">{formatPrices(item.prices)}</div>
                 {showDescriptions && item.description && (
-                  <span className="tv-item-desc">{item.description}</span>
+                  <div className="tv-item-desc">{item.description}</div>
                 )}
               </div>
             ))}
@@ -424,14 +396,13 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           <div className="tv-col" style={{ paddingLeft: "2.5vw" }}>
             {col2.map((item, i) => (
               <div className="tv-item" key={item.name} style={{ animationDelay: `${(half + i) * 0.04}s` }}>
-                <div className="tv-item-row">
+                <div className="tv-item-name-row">
                   <span className="tv-item-name">{item.name}</span>
                   {item.popular && <span className="tv-popular-badge">★ Popular</span>}
-                  <span className="tv-item-dots" />
-                  <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
+                <div className="tv-item-price">{formatPrices(item.prices)}</div>
                 {showDescriptions && item.description && (
-                  <span className="tv-item-desc">{item.description}</span>
+                  <div className="tv-item-desc">{item.description}</div>
                 )}
               </div>
             ))}
