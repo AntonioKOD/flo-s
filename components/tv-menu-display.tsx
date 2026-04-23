@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
 type Price = {
   label?: string
   amount: number
@@ -17,6 +19,23 @@ type Props = {
   title: string
   subtitle?: string
   items: MenuItem[]
+  badge?: string
+}
+
+function useClock() {
+  const [time, setTime] = useState("")
+  useEffect(() => {
+    const fmt = () =>
+      new Date().toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })
+    setTime(fmt())
+    const id = setInterval(() => setTime(fmt()), 10_000)
+    return () => clearInterval(id)
+  }, [])
+  return time
 }
 
 const formatPrice = (price: number) =>
@@ -32,8 +51,9 @@ function formatPrices(prices: Price[]): string {
     .join("  \u00B7  ")
 }
 
-export default function TVMenuDisplay({ title, subtitle, items }: Props) {
+export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily Menu" }: Props) {
   const half = Math.ceil(items.length / 2)
+  const time = useClock()
   const col1 = items.slice(0, half)
   const col2 = items.slice(half)
 
@@ -326,8 +346,11 @@ export default function TVMenuDisplay({ title, subtitle, items }: Props) {
           </div>
 
           <div className="tv-header-right">
+            {time && (
+              <div className="tv-clock">{time}</div>
+            )}
             <div>
-              <div className="tv-header-badge">Catering Menu</div>
+              <div className="tv-header-badge">{badge}</div>
               <div className="tv-header-contact">
                 (774) 480-5155<br />
                 750 Centre St, Brockton MA

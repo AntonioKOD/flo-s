@@ -12,12 +12,6 @@ const items = [
   { name: "Cheese Pizza", prices: [{ amount: 16.49 }] },
   { name: "Pizza with One Topping", prices: [{ amount: 19.49 }] },
   { name: "Pizza with Two Toppings", prices: [{ amount: 22.49 }] },
-  { name: "Flo's Special Pizza", prices: [{ amount: 24.99 }], popular: true },
-  {
-    name: "Special Pizzas",
-    description: "Veggie \u00B7 Margherita \u00B7 Chicken Bacon Ranch \u00B7 Hawaiian \u00B7 Chicken Broccoli \u00B7 BBQ Chicken \u00B7 Buffalo Chicken \u00B7 Greek \u00B7 MeatLovers",
-    prices: [{ amount: 23.99 }],
-  },
 ]
 
 export default function AppetizersTV() {
