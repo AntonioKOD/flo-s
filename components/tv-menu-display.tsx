@@ -217,15 +217,16 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         /* ── MENU ITEM ──
-           flex:1 distributes column height equally among all items.
-           Name + price stack vertically — nothing overflows horizontally. */
+           flex:1 gives each item an equal share of column height.
+           justify-content: flex-start avoids the CSS center-overflow
+           bug where content bleeds outside overflow:hidden bounds. */
         .tv-item {
           flex: 1;
           min-height: 0;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          padding: 0 0.2vw;
+          justify-content: flex-start;
+          padding: 0.7vh 0.2vw 0;
           border-bottom: 1px solid #1D1D1B;
           overflow: hidden;
           background: #111110;
@@ -239,23 +240,25 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Name row: name + optional badge, full width */
+        /* Name row: name + optional badge */
         .tv-item-name-row {
           display: flex;
-          align-items: center;
-          gap: 0.6em;
-          line-height: 1;
+          align-items: baseline;
+          gap: 0.55em;
+          flex-wrap: nowrap;
         }
 
+        /* Name: never truncate — wraps to second line if needed */
         .tv-item-name {
-          font-size: clamp(1.15rem, 1.95vw, 2.5rem);
+          font-size: clamp(1.15rem, 1.9vw, 2.45rem);
           font-weight: 600;
           color: #F5F0E8;
           letter-spacing: -0.015em;
-          line-height: 1.15;
-          /* allow long names to wrap rather than truncate */
-          word-break: break-word;
-          overflow-wrap: break-word;
+          line-height: 1.18;
+          white-space: normal;
+          overflow-wrap: anywhere;
+          flex-shrink: 1;
+          min-width: 0;
         }
 
         .tv-popular-badge {
@@ -265,38 +268,37 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           background: rgba(193,39,45,0.18);
           border: 1px solid rgba(193,39,45,0.4);
           color: #D96060;
-          font-size: clamp(0.48rem, 0.58vw, 0.7rem);
+          font-size: clamp(0.45rem, 0.55vw, 0.68rem);
           font-weight: 700;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          padding: 0.22em 0.55em;
+          padding: 0.2em 0.5em;
           border-radius: 3px;
           white-space: nowrap;
           flex-shrink: 0;
+          vertical-align: middle;
         }
 
-        /* Price on its own line — always fully visible */
+        /* Price: own block line, always fully visible */
         .tv-item-price {
-          font-size: clamp(1rem, 1.65vw, 2.1rem);
+          font-size: clamp(0.95rem, 1.6vw, 2rem);
           font-weight: 700;
           color: #C1272D;
           letter-spacing: -0.01em;
+          margin-top: 0.1em;
+          line-height: 1.1;
+          white-space: normal;
+          word-break: break-word;
+        }
+
+        .tv-item-desc {
+          font-size: clamp(0.68rem, 0.95vw, 1.2rem);
+          color: #3E3C39;
           margin-top: 0.15em;
           line-height: 1;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }
-
-        .tv-item-desc {
-          font-size: clamp(0.72rem, 1vw, 1.25rem);
-          color: #444240;
-          margin-top: 0.18em;
-          line-height: 1;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          flex-shrink: 0;
         }
 
         /* ── FOOTER ── */
