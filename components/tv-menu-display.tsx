@@ -56,8 +56,6 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
   const time = useClock()
   const col1 = items.slice(0, half)
   const col2 = items.slice(half)
-  // Show descriptions only when columns are short enough to have breathing room
-  const showDescriptions = half <= 7
 
   return (
     <>
@@ -217,17 +215,18 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         /* ── MENU ITEM ──
-           flex:1 gives each item an equal share of column height.
-           justify-content: flex-start avoids the CSS center-overflow
-           bug where content bleeds outside overflow:hidden bounds. */
+           Horizontal band: [Name + badge | Price]
+           Name and price are on the SAME row so your eye reads them
+           as a pair — no confusion between adjacent items. */
         .tv-item {
           flex: 1;
           min-height: 0;
           display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          padding: 0.7vh 0.2vw 0;
-          border-bottom: 1px solid #1D1D1B;
+          flex-direction: row;
+          align-items: center;
+          gap: 1em;
+          padding: 0 0.3vw;
+          border-bottom: 1px solid #252523;
           overflow: hidden;
           background: #111110;
           animation: fadeInUp 0.35s ease-out both;
@@ -240,25 +239,25 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Name row: name + optional badge */
-        .tv-item-name-row {
+        /* Left: name + optional badge — takes all remaining space */
+        .tv-item-left {
+          flex: 1;
+          min-width: 0;
           display: flex;
-          align-items: baseline;
+          align-items: center;
           gap: 0.55em;
-          flex-wrap: nowrap;
+          overflow: hidden;
         }
 
-        /* Name: never truncate — wraps to second line if needed */
         .tv-item-name {
           font-size: clamp(1.15rem, 1.9vw, 2.45rem);
           font-weight: 600;
           color: #F5F0E8;
           letter-spacing: -0.015em;
-          line-height: 1.18;
-          white-space: normal;
-          overflow-wrap: anywhere;
-          flex-shrink: 1;
-          min-width: 0;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .tv-popular-badge {
@@ -272,33 +271,27 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           font-weight: 700;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          padding: 0.2em 0.5em;
+          padding: 0.22em 0.52em;
           border-radius: 3px;
           white-space: nowrap;
           flex-shrink: 0;
-          vertical-align: middle;
         }
 
-        /* Price: own block line, always fully visible */
+        /* Right: price — fixed width, right-aligned, wraps if multi-tier */
         .tv-item-price {
-          font-size: clamp(0.95rem, 1.6vw, 2rem);
+          flex-shrink: 0;
+          max-width: 42%;
+          font-size: clamp(1rem, 1.65vw, 2.1rem);
           font-weight: 700;
           color: #C1272D;
           letter-spacing: -0.01em;
-          margin-top: 0.1em;
-          line-height: 1.1;
-          white-space: normal;
+          line-height: 1.25;
+          text-align: right;
           word-break: break-word;
         }
 
         .tv-item-desc {
-          font-size: clamp(0.68rem, 0.95vw, 1.2rem);
-          color: #3E3C39;
-          margin-top: 0.15em;
-          line-height: 1;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          display: none; /* descriptions hidden in row layout — unreadable at TV distance */
         }
 
         /* ── FOOTER ── */
@@ -381,14 +374,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           <div className="tv-col">
             {col1.map((item, i) => (
               <div className="tv-item" key={item.name} style={{ animationDelay: `${i * 0.04}s` }}>
-                <div className="tv-item-name-row">
+                <div className="tv-item-left">
                   <span className="tv-item-name">{item.name}</span>
                   {item.popular && <span className="tv-popular-badge">★ Popular</span>}
                 </div>
                 <div className="tv-item-price">{formatPrices(item.prices)}</div>
-                {showDescriptions && item.description && (
-                  <div className="tv-item-desc">{item.description}</div>
-                )}
               </div>
             ))}
           </div>
@@ -398,14 +388,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           <div className="tv-col" style={{ paddingLeft: "2.5vw" }}>
             {col2.map((item, i) => (
               <div className="tv-item" key={item.name} style={{ animationDelay: `${(half + i) * 0.04}s` }}>
-                <div className="tv-item-name-row">
+                <div className="tv-item-left">
                   <span className="tv-item-name">{item.name}</span>
                   {item.popular && <span className="tv-popular-badge">★ Popular</span>}
                 </div>
                 <div className="tv-item-price">{formatPrices(item.prices)}</div>
-                {showDescriptions && item.description && (
-                  <div className="tv-item-desc">{item.description}</div>
-                )}
               </div>
             ))}
           </div>
