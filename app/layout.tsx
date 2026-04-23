@@ -7,7 +7,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { CmsProvider } from "aicms";
 import { getSiteContent, generateCmsMetadata } from "aicms/server";
-import { CmsWidget } from "aicms/widget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -68,7 +67,6 @@ export default async function RootLayout({
           <Loader />
           <ConditionalNavBar />
           {children}
-          <CmsWidget />
         </CmsProvider>
       </body>
     </html>
