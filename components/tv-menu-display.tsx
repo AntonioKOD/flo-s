@@ -48,7 +48,7 @@ const formatPrice = (price: number) =>
 function formatPrices(prices: Price[]): string {
   return prices
     .map((p) => (p.label ? `${p.label} ${formatPrice(p.amount)}` : formatPrice(p.amount)))
-    .join("  \u00B7  ")
+    .join("  ·  ")
 }
 
 export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily Menu" }: Props) {
@@ -66,13 +66,13 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           width: 100vw;
           height: 100vh;
           overflow: hidden;
-          background: #FFF5E1;
+          background: #111110;
         }
 
         .tv-wrap {
           width: 100vw;
           height: 100vh;
-          background: #FFF5E1;
+          background: #111110;
           display: flex;
           flex-direction: column;
           overflow: hidden;
@@ -84,22 +84,30 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 2vh 4vw;
-          border-bottom: 2px solid #E4E2DD;
-          background: #FFF5E1;
+          padding: 1.8vh 3.5vw;
+          border-bottom: 1px solid #2A2A28;
+          background: #111110;
           flex-shrink: 0;
         }
 
         .tv-brand {
           display: flex;
           align-items: center;
-          gap: 1em;
+          gap: 1.2em;
+        }
+
+        .tv-brand-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #C1272D;
+          flex-shrink: 0;
         }
 
         .tv-brand-name {
-          font-size: clamp(2rem, 4vw, 4.5rem);
+          font-size: clamp(1.6rem, 2.8vw, 3.5rem);
           font-weight: 700;
-          color: #1C1C1C;
+          color: #F5F0E8;
           letter-spacing: -0.02em;
           line-height: 1;
           font-family: var(--font-righteous), var(--font-geist-sans), sans-serif;
@@ -110,84 +118,88 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         .tv-brand-divider {
-          width: 2px;
-          height: clamp(2rem, 3.5vw, 4rem);
-          background: #E4E2DD;
+          width: 1px;
+          height: clamp(1.5rem, 2.5vw, 3rem);
+          background: #2A2A28;
           flex-shrink: 0;
         }
 
         .tv-brand-tag {
-          font-size: clamp(0.75rem, 1.1vw, 1.2rem);
-          color: #6A5B4A;
+          font-size: clamp(0.7rem, 0.95vw, 1.1rem);
+          color: #6A6560;
           font-weight: 400;
-          letter-spacing: 0.01em;
-          line-height: 1.5;
+          letter-spacing: 0.02em;
+          line-height: 1.55;
         }
 
         .tv-header-right {
-          text-align: right;
           display: flex;
           align-items: center;
-          gap: 1.5em;
+          gap: 2em;
         }
 
         .tv-clock {
-          font-size: clamp(1.2rem, 2vw, 2.5rem);
+          font-size: clamp(1.4rem, 2.4vw, 3rem);
           font-weight: 700;
-          color: #1C1C1C;
+          color: #F5F0E8;
           font-family: var(--font-geist-mono), monospace;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.06em;
+        }
+
+        .tv-header-meta {
+          text-align: right;
         }
 
         .tv-header-badge {
           display: inline-block;
           background: #C1272D;
-          color: #FFF5E1;
-          font-size: clamp(0.6rem, 0.8vw, 0.9rem);
-          font-weight: 600;
-          letter-spacing: 0.15em;
+          color: #F5F0E8;
+          font-size: clamp(0.55rem, 0.7vw, 0.85rem);
+          font-weight: 700;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          padding: 0.35em 0.8em;
-          border-radius: 4px;
-          margin-bottom: 0.5em;
+          padding: 0.3em 0.75em;
+          border-radius: 3px;
+          margin-bottom: 0.45em;
         }
 
         .tv-header-contact {
-          font-size: clamp(0.7rem, 1vw, 1.1rem);
-          color: #6A5B4A;
+          font-size: clamp(0.65rem, 0.9vw, 1rem);
+          color: #6A6560;
           line-height: 1.6;
         }
 
         /* ── SECTION TITLE ── */
         .tv-section-header {
-          padding: 2.2vh 4vw 0;
+          padding: 1.8vh 3.5vw 0;
           flex-shrink: 0;
         }
 
         .tv-section-title {
-          font-size: clamp(2.5rem, 6vw, 7.5rem);
+          font-size: clamp(2.8rem, 5.5vw, 7rem);
           font-weight: 700;
-          color: #1C1C1C;
+          color: #F5F0E8;
           letter-spacing: -0.03em;
           line-height: 1;
           font-family: var(--font-righteous), var(--font-geist-sans), sans-serif;
         }
 
-        .tv-section-title span {
+        .tv-section-title-accent {
           color: #C1272D;
         }
 
         .tv-section-subtitle {
-          font-size: clamp(0.85rem, 1.3vw, 1.45rem);
-          color: #6A5B4A;
-          margin-top: 0.4em;
+          font-size: clamp(0.9rem, 1.3vw, 1.55rem);
+          color: #6A6560;
+          margin-top: 0.45em;
           font-weight: 400;
+          letter-spacing: 0.01em;
         }
 
         .tv-section-rule {
-          margin-top: 1.8vh;
-          height: 3px;
-          background: linear-gradient(90deg, #C1272D 0%, #C1272D 20%, #E4E2DD 60%, transparent 100%);
+          margin-top: 1.5vh;
+          height: 2px;
+          background: linear-gradient(90deg, #C1272D 0%, #C1272D 12%, #2A2A28 50%, transparent 100%);
         }
 
         /* ── MENU GRID ── */
@@ -195,20 +207,20 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           flex: 1;
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
-          gap: 0 0;
-          padding: 2vh 4vw 0;
+          padding: 1.5vh 3.5vw 0;
           overflow: hidden;
           min-height: 0;
         }
 
         .tv-col-sep {
-          background: #E4E2DD;
+          background: #2A2A28;
           margin: 0 2.5vw;
         }
 
         .tv-col {
           display: flex;
           flex-direction: column;
+          gap: 0;
           overflow: hidden;
         }
 
@@ -216,9 +228,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         .tv-item {
           display: flex;
           flex-direction: column;
-          padding: 1.1vh 0;
-          border-bottom: 1px solid #E4E2DD;
-          animation: fadeInUp 0.5s ease-out both;
+          justify-content: center;
+          padding: 1.15vh 0;
+          border-bottom: 1px solid #1E1E1C;
+          animation: fadeInUp 0.4s ease-out both;
+          flex-shrink: 0;
         }
 
         .tv-item:last-child {
@@ -226,44 +240,40 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* Name + price row */
         .tv-item-row {
           display: flex;
           align-items: baseline;
-          justify-content: space-between;
-          gap: 1.5em;
+          gap: 0.8em;
         }
 
         .tv-item-name {
-          font-size: clamp(1rem, 1.7vw, 2rem);
-          font-weight: 500;
-          color: #1C1C1C;
-          letter-spacing: -0.01em;
-          line-height: 1.25;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          gap: 0.5em;
+          font-size: clamp(1.25rem, 2.1vw, 2.65rem);
+          font-weight: 600;
+          color: #F5F0E8;
+          letter-spacing: -0.015em;
+          line-height: 1.2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex-shrink: 1;
+          min-width: 0;
         }
 
-        .tv-popular-badge {
-          display: inline-block;
-          background: #C1272D;
-          color: #FFF5E1;
-          font-size: clamp(0.5rem, 0.6vw, 0.7rem);
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.2em 0.6em;
-          border-radius: 50px;
-          white-space: nowrap;
+        /* dot leader */
+        .tv-item-dots {
+          flex: 1;
+          border-bottom: 2px dotted #2E2E2C;
+          margin-bottom: 0.25em;
+          min-width: 1em;
         }
 
         .tv-item-price {
-          font-size: clamp(1rem, 1.6vw, 1.9rem);
+          font-size: clamp(1.25rem, 2vw, 2.5rem);
           font-weight: 700;
           color: #C1272D;
           letter-spacing: -0.01em;
@@ -271,12 +281,36 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           flex-shrink: 0;
         }
 
+        /* popular badge */
+        .tv-popular-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3em;
+          background: rgba(193,39,45,0.15);
+          border: 1px solid rgba(193,39,45,0.35);
+          color: #E06060;
+          font-size: clamp(0.5rem, 0.6vw, 0.72rem);
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          padding: 0.2em 0.55em;
+          border-radius: 3px;
+          white-space: nowrap;
+          vertical-align: middle;
+          margin-left: 0.4em;
+          flex-shrink: 0;
+          align-self: center;
+        }
+
         .tv-item-desc {
-          font-size: clamp(0.72rem, 1vw, 1.1rem);
-          color: #6A5B4A;
-          margin-top: 0.2em;
+          font-size: clamp(0.8rem, 1.15vw, 1.45rem);
+          color: #52504C;
+          margin-top: 0.18em;
           line-height: 1.4;
           font-weight: 400;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         /* ── FOOTER ── */
@@ -285,9 +319,9 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1.5vh 4vw;
-          border-top: 2px solid #E4E2DD;
-          background: #FFF5E1;
+          padding: 1.2vh 3.5vw;
+          border-top: 1px solid #2A2A28;
+          background: #111110;
         }
 
         .tv-footer-left {
@@ -300,8 +334,8 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           display: flex;
           align-items: center;
           gap: 0.5em;
-          font-size: clamp(0.7rem, 1vw, 1.1rem);
-          color: #6A5B4A;
+          font-size: clamp(0.7rem, 1vw, 1.2rem);
+          color: #52504C;
           font-weight: 400;
         }
 
@@ -312,23 +346,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           flex-shrink: 0;
         }
 
-        .tv-footer-right {
-          display: flex;
-          align-items: center;
-          gap: 1em;
-        }
-
         .tv-footer-order {
-          font-size: clamp(0.7rem, 1vw, 1.1rem);
+          font-size: clamp(0.75rem, 1.05vw, 1.25rem);
           color: #C1272D;
           font-weight: 600;
           letter-spacing: 0.02em;
-        }
-
-        .tv-footer-qr {
-          font-size: clamp(0.6rem, 0.8vw, 0.9rem);
-          color: #6A5B4A;
-          font-style: italic;
         }
       `}</style>
 
@@ -336,24 +358,23 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         {/* Header */}
         <header className="tv-header">
           <div className="tv-brand">
+            <div className="tv-brand-dot" />
             <div className="tv-brand-name">
               Flo&apos;s <span>Pizza</span>
             </div>
             <div className="tv-brand-divider" />
             <div className="tv-brand-tag">
-              Handcrafted &middot; Fresh<br />Authentic Italian
+              Brockton, MA &middot; Est. 2010<br />
+              Handcrafted &middot; Fresh Daily
             </div>
           </div>
 
           <div className="tv-header-right">
-            {time && (
-              <div className="tv-clock">{time}</div>
-            )}
-            <div>
+            {time && <div className="tv-clock">{time}</div>}
+            <div className="tv-header-meta">
               <div className="tv-header-badge">{badge}</div>
               <div className="tv-header-contact">
-                (774) 480-5155<br />
-                750 Centre St, Brockton MA
+                (774) 480-5155 &nbsp;&middot;&nbsp; 750 Centre St, Brockton MA
               </div>
             </div>
           </div>
@@ -364,8 +385,8 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           <h1 className="tv-section-title">
             {title.split(" ").map((word, i, arr) =>
               i === arr.length - 1
-                ? <span key={i}>{word}</span>
-                : <span key={i} style={{ color: "#1C1C1C" }}>{word} </span>
+                ? <span key={i} className="tv-section-title-accent">{word}</span>
+                : <span key={i}>{word} </span>
             )}
           </h1>
           {subtitle && <p className="tv-section-subtitle">{subtitle}</p>}
@@ -376,12 +397,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         <div className="tv-grid">
           <div className="tv-col">
             {col1.map((item, i) => (
-              <div className="tv-item" key={item.name} style={{ animationDelay: `${i * 0.05}s` }}>
+              <div className="tv-item" key={item.name} style={{ animationDelay: `${i * 0.04}s` }}>
                 <div className="tv-item-row">
-                  <span className="tv-item-name">
-                    {item.name}
-                    {item.popular && <span className="tv-popular-badge">Popular</span>}
-                  </span>
+                  <span className="tv-item-name">{item.name}</span>
+                  {item.popular && <span className="tv-popular-badge">★ Popular</span>}
+                  <span className="tv-item-dots" />
                   <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
                 {item.description && (
@@ -395,12 +415,11 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
 
           <div className="tv-col" style={{ paddingLeft: "2.5vw" }}>
             {col2.map((item, i) => (
-              <div className="tv-item" key={item.name} style={{ animationDelay: `${(half + i) * 0.05}s` }}>
+              <div className="tv-item" key={item.name} style={{ animationDelay: `${(half + i) * 0.04}s` }}>
                 <div className="tv-item-row">
-                  <span className="tv-item-name">
-                    {item.name}
-                    {item.popular && <span className="tv-popular-badge">Popular</span>}
-                  </span>
+                  <span className="tv-item-name">{item.name}</span>
+                  {item.popular && <span className="tv-popular-badge">★ Popular</span>}
+                  <span className="tv-item-dots" />
                   <span className="tv-item-price">{formatPrices(item.prices)}</span>
                 </div>
                 {item.description && (
@@ -428,7 +447,7 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
               750 Centre Street, Brockton, MA 02302
             </div>
           </div>
-          <div className="tv-footer-right">
+          <div>
             <span className="tv-footer-order">Order Online: flospizza.kwickmenu.com</span>
           </div>
         </footer>

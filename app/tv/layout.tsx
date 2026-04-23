@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import TVAutoRotator from "@/components/tv-auto-rotator"
 
 export const metadata: Metadata = {
   title: "TV Menu | Flo's Pizza",
@@ -14,10 +13,5 @@ export default function TVLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      {children}
-      <TVAutoRotator />
-    </>
-  )
+  return <>{children}</>
 }
