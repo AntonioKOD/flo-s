@@ -1,13 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import Image from "next/image"
 
 export default function Loader() {
+  const pathname = usePathname()
   const [show, setShow] = useState(false)
 
   useEffect(() => {
+    if (pathname.startsWith("/tv")) return
     if (sessionStorage.getItem("flos_loaded")) return
     setShow(true)
     const timer = setTimeout(() => {
