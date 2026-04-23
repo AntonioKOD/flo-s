@@ -207,7 +207,7 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           flex: 1;
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
-          padding: 1.5vh 3.5vw 0;
+          padding: 1.5vh 3.5vw 1.5vh;
           overflow: hidden;
           min-height: 0;
         }
@@ -217,22 +217,26 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
           margin: 0 2.5vw;
         }
 
+        /* grid cells must be told to stretch to grid row height */
         .tv-col {
           display: flex;
           flex-direction: column;
-          gap: 0;
+          height: 100%;
           overflow: hidden;
         }
 
         /* ── MENU ITEM ── */
+        /* flex: 1 distributes height equally — no items ever clip */
         .tv-item {
+          flex: 1;
+          min-height: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 1.15vh 0;
+          padding: 0 0;
           border-bottom: 1px solid #1E1E1C;
           animation: fadeInUp 0.4s ease-out both;
-          flex-shrink: 0;
+          overflow: hidden;
         }
 
         .tv-item:last-child {
@@ -303,14 +307,15 @@ export default function TVMenuDisplay({ title, subtitle, items, badge = "Daily M
         }
 
         .tv-item-desc {
-          font-size: clamp(0.8rem, 1.15vw, 1.45rem);
+          font-size: clamp(0.78rem, 1.1vw, 1.35rem);
           color: #52504C;
-          margin-top: 0.18em;
-          line-height: 1.4;
+          margin-top: 0.12em;
+          line-height: 1;
           font-weight: 400;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          flex-shrink: 0;
         }
 
         /* ── FOOTER ── */
